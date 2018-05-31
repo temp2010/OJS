@@ -4,96 +4,51 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
-	<h:outputStylesheet name="ojs.css" library="css" />
+	<title>..:: OJS ::..</title>
+	<link rel="shortcut icon" href="resources/img/favicon.ico" type="image/vnd.microsoft.icon" />
 	<h:outputStylesheet name="bootstrap.min.css" library="css" />
+	<h:outputStylesheet name="ojs.css" library="css" />
+	<h:outputScript library="js" name="jquery-3.3.1.min.js" />
+	<h:outputScript library="js" name="bootstrap.bundle.min.js" />
 </h:head>
 <h:body>
-	<nav class="navbar navbar-default">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-bottom">
 		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed"
-					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-					aria-expanded="false">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="#"><img
-					src="Soft-Tect%20Free%20Landing%20Page_files/logo.png" alt="Logo"></img></a>
-			</div>
-			<div class="navbar-collapse collapse"
-				id="bs-example-navbar-collapse-1" aria-expanded="false"
-				style="height: 1px;">
-
-				<ul class="nav navbar-nav navbar-right">
-					<li class="active"><a href="#home">Home</a></li>
-					<li><a href="#features">PRODUCT</a></li>
-					<li><a href="#service">Service</a></li>
-					<li><a href="#price">PRICE</a></li>
-					<li><a href="#business">Business</a></li>
-					<li><a href="#contact">Contact</a></li>
-					<li class="login"><a href="#">Sign In</a></li>
+			<a class="navbar-brand" href="#">OJS</a>
+			<button class="navbar-toggler collapsed" type="button"
+				data-toggle="collapse" data-target="#navbarResponsive"
+				aria-controls="navbarResponsive" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="navbar-collapse collapse" id="navbarResponsive" style="">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item active"><a class="nav-link" href="index.xhtml">Inicio
+							<span class="sr-only">(current)</span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="pages/login.xhtml">Ingresar</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="pages/register.xhtml">Registrarse</a></li>
 				</ul>
-
 			</div>
 		</div>
 	</nav>
-	<header id="home" class="home">
-		<div class="overlay-fluid-block">
-			<div class="container text-center">
-				<div class="row">
-					<div class="home-wrapper">
-						<div class="col-md-10 col-md-offset-1">
-							<div class="home-content">
-								<h1>Bring your Big Data to Life With Soft-Tech</h1>
-								<p>Blue Lance transforms your company's data into rich
-									visuals for you to collect and organize so you can focus on
-									what matters to you. Stay in the know, spot trends as they
-									happen, and push your business further.</p>
-								<div class="row">
-									<div class="col-md-6 col-md-offset-3 col-sm-12 col-xs-12">
-										<div class="home-contact">
-											<div class="input-group">
-												<input class="form-control"
-													placeholder="Enter your email address" type="text"></input><input
-													class="form-control" value="Use It Free" type="submit"></input>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</header>
-	<footer id="footer" class="footer">
+	<section>
 		<div class="container">
 			<div class="row">
-				<div class="footer-wrapper">
-
-					<div class="col-md-6 col-sm-6 col-xs-12">
-						<div class="footer-brand">
-							<img src="Soft-Tect%20Free%20Landing%20Page_files/logo.png"
-								alt="logo" />
-						</div>
+				<ui:insert name="content">
+					<div class="col-lg-6">
+						<h1 class="mt-5">Proyecto Final</h1>
+						<p>
+							Universidad Distrital Francisco José de Caldas<br /> Facultad de
+							Ingeniería<br /> Maestría en Ciencias de la Información y la
+							tecnología<br /> Ingeniería de Software II
+						</p>
 					</div>
-
-					<div class="col-md-6 col-sm-6 col-xs-12">
-						<div class="copyright">
-							<p>
-								Made with <i class="fa fa-heart"></i> by <a target="_blank"
-									href="http://bootstrapthemes.co/"> Bootstrap Themes </a>2016.
-								All rights reserved.
-							</p>
-
-						</div>
-					</div>
-
-				</div>
+				</ui:insert>
 			</div>
 		</div>
-	</footer>
+	</section>
 </h:body>
 </html>
