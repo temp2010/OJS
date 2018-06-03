@@ -1,13 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"   
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      >
-    <body>
-	    <ui:composition>
-	
-			<h1>This is default header</h1>
-				
-	    </ui:composition>
-    </body>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition>
+	<header id="masthead" class="site-header style-5 transparent container"
+		role="banner">
+		<div class="mobile-panel">
+			<button class="main-menu-toggle menu-toggle"
+				aria-controls="main-menu" aria-expanded="true">
+				<span class="menu-toggle-box"><span class="menu-toggle-inner"></span></span>
+			</button>
+		</div>
+		<div class="header-container transparent">
+			<div class="header-container_wrap container">
+				<div class="header-container__flex">
+					<div class="site-branding">
+						<div class="site-logo site-logo--image">
+							<a class="site-logo__link"
+								href="layout.xhtml"
+								rel="home"> <h:graphicImage
+									value="/resources/img/images.png" /></a>
+						</div>
+					</div>
+					<nav id="site-navigation" class="main-navigation animate"
+						role="navigation">
+						<ul id="main-menu" class="menu stuckMenu"
+							style="position: relative; top: 0px; transform: translateX(0px);">
+							<li id="menu-item-1235"
+								class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1235"><a
+								href="table.xhtml">Solicitudes</a></li>
+							<li id="menu-item-1237"
+								class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1237"><a
+								href="formulario.xhtml">Comité</a></li>
+							<li id="menu-item-1239"
+								class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1239"><a
+								href="https://ld-wp.template-help.com/woocommerce_62111_v1/#book-subscribe">Reportes</a></li>
+							<li id="menu-item-1236"
+								class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-24 current_page_item menu-item-has-children menu-item-1236"><a
+								href="https://ld-wp.template-help.com/woocommerce_62111_v1/">Administración<span
+									class="sub-menu-toggle"></span><span class="sub-menu-toggle"></span><span
+									class="sub-menu-toggle"></span></a>
+								<ul class="sub-menu" style="">
+									<li id="menu-item-1380"
+										class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1380"><a
+										href="http://#">Roles</a></li>
+									<li id="menu-item-1388"
+										class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1388"><a
+										href="http://#">Áreas profesionales</a></li>
+									<li id="menu-item-1388"
+										class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1388"><a
+										href="http://#">Usuarios</a></li>
+								</ul></li>
+							<li id="menu-item-1239"
+								class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1239"><a
+								href="../index.xhtml">Salir</a></li>
+						</ul>
+						<div class="pseudoStickyBlock"
+							style="position: relative; display: block; height: 0px;"></div>
+						<div class="pseudoStickyBlock"
+							style="position: relative; display: block; height: 0px;"></div>
+						<div class="pseudoStickyBlock"
+							style="position: relative; display: block; height: 0px;"></div>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</header>
+</ui:composition>
 </html>
