@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 import org.udistrital.ojs.entities.Area;
 import org.udistrital.ojs.services.AreaService;
 
@@ -24,8 +25,10 @@ public class PrincipalController {
     }
     
     @RequestMapping(value="/register", method=RequestMethod.GET)
-    public void register() {
-    	List<Area> listArea = areaService.listar();
-    	System.out.println("jopena");
+    public ModelAndView  register() {
+    	ModelAndView model = new ModelAndView();
+    	List<Area> areas = areaService.listar();
+    	model.addObject ("areas", areas);
+        return model;
     }
 }
