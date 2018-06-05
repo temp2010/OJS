@@ -5,7 +5,7 @@
 	id="WebApp_ID" version="3.1">
 	<display-name>OJS</display-name>
 	<welcome-file-list>
-		<welcome-file>index.xhtml</welcome-file>
+		<welcome-file>index.xtml</welcome-file>
 	</welcome-file-list>
 
 	<!-- JSF -->
@@ -16,7 +16,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Faces Servlet</servlet-name>
-		<url-pattern>*.xhtml</url-pattern>
+		<url-pattern>*.jsf</url-pattern>
 	</servlet-mapping>
 
 	<!-- Spring -->
@@ -25,12 +25,29 @@
 	</listener>
 	<listener>
 		<listener-class>
-			org.springframework.web.context.request.RequestContextListener</listener-class>
+			org.springframework.web.context.request.RequestContextListener
+		</listener-class>
 	</listener>
+	<servlet>
+		<servlet-name>SpringController</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring-mvc.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>SpringController</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
 			/WEB-INF/spring-security.xml
+			/WEB-INF/application-context.xml
 		</param-value>
 	</context-param>
 
@@ -47,7 +64,8 @@
 
 	<listener>
 		<listener-class>
-			org.springframework.web.context.request.RequestContextListener</listener-class>
+			org.springframework.web.context.request.RequestContextListener
+		</listener-class>
 	</listener>
 
 	<!-- Log4j -->

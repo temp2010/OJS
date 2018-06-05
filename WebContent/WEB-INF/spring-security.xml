@@ -8,11 +8,7 @@
 	http://www.springframework.org/schema/security/spring-security.xsd">
 
 	<http auto-config="true">
-		<intercept-url pattern="/login*" access="permitAll" />
-		<intercept-url pattern="/index*" access="permitAll" />
-		<intercept-url pattern="/register*" access="permitAll" />
-		<intercept-url pattern="/*"
-			access="hasRole('ROLE_USER')" />
+		<intercept-url pattern="/*" access="permitAll" />
 		<form-login login-page="/login.xhtml"
 			default-target-url="/pages/layout.xhtml"
 			authentication-failure-url="/login.xhtml?e"

@@ -7,5 +7,6 @@ Configuration DTD 3.0//EN"
 		<property name="connection.pool_size">5</property>
 		<property name="hbm2ddl.auto">update</property>
 		<property name="show_sql">true</property>
+		<mapping class="org.udistrital.ojs.entities.Area" />
 	</session-factory>
 </hibernate-configuration>
