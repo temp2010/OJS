@@ -9,38 +9,38 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name = "AreasProfesionales")
-public class Area {
-
+@Table(name = "Estados")
+public class Estado {
+	
 	private Integer id;
-	private String area;
+	private String estado;
 
-	public Area() {
+	public Estado() {
 	}
 
-	public Area(String area) {
-		this.area = area;
+	public Estado(String estado) {
+		this.estado = estado;
 	}
-
+	
 	@Id
 	@GenericGenerator(name = "native", strategy = "native")
 	@GeneratedValue(generator = "native")
-	@Column(name = "idArea", unique = true, nullable = false)
+	@Column(name = "idEstado", unique = true, nullable = false)
 	public Integer getId() {
 		return id;
 	}
 	
-	@Column(name = "Area", nullable = false, length = 50)
-	public String getArea() {
-		return area;
+	@Column(name = "Estado", nullable = false, length = 50)
+	public String getEstado() {
+		return estado;
 	}
 	
 	public void setId(Integer id) {
 		this.id = id;
 	}
 	
-	public void setArea(String area) {
-		this.area = area;
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 
 }

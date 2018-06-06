@@ -8,5 +8,8 @@ Configuration DTD 3.0//EN"
 		<property name="hbm2ddl.auto">update</property>
 		<property name="show_sql">true</property>
 		<mapping class="org.udistrital.ojs.entities.Area" />
+		<mapping class="org.udistrital.ojs.entities.Estado" />
+		<mapping class="org.udistrital.ojs.entities.Rol" />
+		<mapping class="org.udistrital.ojs.entities.Usuario" />
 	</session-factory>
 </hibernate-configuration>

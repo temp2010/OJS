@@ -9,10 +9,11 @@
 
 	<http auto-config="true">
 		<intercept-url pattern="/*" access="permitAll" />
-		<form-login login-page="/login.xhtml"
-			default-target-url="/pages/layout.xhtml"
-			authentication-failure-url="/login.xhtml?e"
+		<form-login login-page="/login"
+			default-target-url="/pages/layout"
+			authentication-failure-url="/login?error"
 			username-parameter="username" password-parameter="password" />
+		<logout logout-url="/logout" />
 		<csrf disabled="true" />
 	</http>
 

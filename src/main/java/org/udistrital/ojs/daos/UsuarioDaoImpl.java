@@ -5,17 +5,17 @@ import java.util.List;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.udistrital.ojs.entities.Area;
+import org.udistrital.ojs.entities.Usuario;
 
-@Repository("areaDao")
-public class AreaDaoImpl implements AreaDao {
-
+@Repository("usuarioDao")
+public class UsuarioDaoImpl implements UsuarioDao {
+	
 	@Autowired
 	private SessionFactory sessionFactory;
 
 	@Override
-	public List<Area> listar() {
-		return (List<Area>) sessionFactory.getCurrentSession().createQuery("FROM Area").list();
+	public List<Usuario> listar() {
+		return (List<Usuario>) sessionFactory.getCurrentSession().createQuery("FROM Usuario").list();
 	}
 
 }
