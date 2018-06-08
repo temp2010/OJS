@@ -10,6 +10,8 @@ Configuration DTD 3.0//EN"
 		<mapping class="org.udistrital.ojs.entities.Area" />
 		<mapping class="org.udistrital.ojs.entities.Estado" />
 		<mapping class="org.udistrital.ojs.entities.Rol" />
+		<mapping class="org.udistrital.ojs.entities.Soporte" />
 		<mapping class="org.udistrital.ojs.entities.Usuario" />
+		<mapping class="org.udistrital.ojs.entities.UsuarioRegistrado" />
 	</session-factory>
 </hibernate-configuration>

@@ -1,11 +1,10 @@
 package org.udistrital.ojs.entities;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -20,7 +19,18 @@ public class Usuario {
 	private String nombre;
 	private String correo;
 	private String contrasena;
-	private boolean estado;
+	private Boolean estado;
+	private UsuarioRegistrado usuarioRegistrado;
+	
+	public Usuario() {
+	}
+	
+	public Usuario(Rol rol, String nombre, String correo, Boolean estado) {
+		this.rol = rol;
+		this.nombre = nombre;
+		this.correo = correo;
+		this.estado = estado;
+	}
 	
 	@Id
 	@GenericGenerator(name = "native", strategy = "native")
@@ -30,7 +40,8 @@ public class Usuario {
 		return id;
 	}
 	
-	@OneToOne(fetch = FetchType.LAZY, mappedBy = "usuario", cascade = CascadeType.ALL)
+	@OneToOne
+	@JoinColumn(name = "idRol")
 	public Rol getRol() {
 		return rol;
 	}
@@ -53,6 +64,12 @@ public class Usuario {
 	@Column(name = "estado", nullable = false)
 	public boolean isEstado() {
 		return estado;
+	}
+	
+	@OneToOne
+	@JoinColumn(name = "idUsuario")
+	public UsuarioRegistrado getUsuarioRegistrado() {
+		return usuarioRegistrado;
 	}
 	
 	public void setId(Integer id) {
@@ -79,4 +96,8 @@ public class Usuario {
 		this.estado = estado;
 	}
 
+	public void setUsuarioRegistrado(UsuarioRegistrado usuarioRegistrado) {
+		this.usuarioRegistrado = usuarioRegistrado;
+	}
+	
 }
