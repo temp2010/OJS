@@ -19,6 +19,21 @@ CREATE TABLE [dbo].[AreasProfesionales](
 ) ON [PRIMARY]
 GO
 
+INSERT INTO [dbo].[AreasProfesionales] ([Area]) VALUES ('Licenciado en sociologia')
+GO
+INSERT INTO [dbo].[AreasProfesionales] ([Area]) VALUES ('Licenciado en antropologia social')
+GO
+INSERT INTO [dbo].[AreasProfesionales] ([Area]) VALUES ('Licenciado en ciencias sociales')
+GO
+INSERT INTO [dbo].[AreasProfesionales] ([Area]) VALUES ('Licenciado en sociologia rural')
+GO
+INSERT INTO [dbo].[AreasProfesionales] ([Area]) VALUES ('Licenciado en antropologia social de la educacion')
+GO
+INSERT INTO [dbo].[AreasProfesionales] ([Area]) VALUES ('Licenciado en sociologia del trabajo')
+GO
+INSERT INTO [dbo].[AreasProfesionales] ([Area]) VALUES ('Licenciado en sociologia del trabajo')
+GO
+
 -- Estados
 USE [ojs]
 GO
@@ -41,6 +56,17 @@ CREATE TABLE [dbo].[Estados](
 ) ON [PRIMARY]
 GO
 
+INSERT INTO [dbo].[Estados] ([Estado], [Orden]) VALUES ('Registrado', 1)
+GO
+INSERT INTO [dbo].[Estados] ([Estado], [Orden]) VALUES ('Devuelto', 2)
+GO
+INSERT INTO [dbo].[Estados] ([Estado], [Orden]) VALUES ('Rechazado', 3)
+GO
+INSERT INTO [dbo].[Estados] ([Estado], [Orden]) VALUES ('Aprobado Evaluador', 4)
+GO
+INSERT INTO [dbo].[Estados] ([Estado], [Orden]) VALUES ('Aprobado Comité', 5)
+GO
+
 -- Roles
 USE [ojs]
 GO
@@ -55,11 +81,23 @@ GO
 CREATE TABLE [dbo].[Roles](
 	[idRol] [smallint] IDENTITY(1,1) NOT NULL,
 	[Rol] [varchar](50) NOT NULL,
+	[Tipo] [varchar](7) NOT NULL,
  CONSTRAINT [PK_Roles] PRIMARY KEY CLUSTERED 
 (
 	[idRol] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
+GO
+
+INSERT INTO [dbo].[Roles] ([Rol], [Tipo]) VALUES ('Administrador', 'Privado')
+GO
+INSERT INTO [dbo].[Roles] ([Rol], [Tipo]) VALUES ('Validador', 'Privado')
+GO
+INSERT INTO [dbo].[Roles] ([Rol], [Tipo]) VALUES ('Comité', 'Privado')
+GO
+INSERT INTO [dbo].[Roles] ([Rol], [Tipo]) VALUES ('Evaluador', 'Público')
+GO
+INSERT INTO [dbo].[Roles] ([Rol], [Tipo]) VALUES ('Escritor', 'Público')
 GO
 
 --Usuarios
@@ -78,13 +116,20 @@ CREATE TABLE [dbo].[Usuarios](
 	[idRol] [smallint] NOT NULL,
 	[Nombre] [varchar](50) NOT NULL,
 	[Correo] [varchar](50) NOT NULL,
-	[Contrasena] [varchar](50),
+	[Contrasena] [varchar](50) NULL,
 	[Estado] [bit] NOT NULL,
  CONSTRAINT [PK_Usuarios] PRIMARY KEY CLUSTERED 
 (
 	[idUsuario] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY],
+ CONSTRAINT [UK_Usuarios] UNIQUE NONCLUSTERED 
+(
+	[Correo] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[Usuarios] ADD  CONSTRAINT [DF_Usuarios_Estado]  DEFAULT ((1)) FOR [Estado]
 GO
 
 ALTER TABLE [dbo].[Usuarios]  WITH CHECK ADD  CONSTRAINT [FK_Usuarios_Roles] FOREIGN KEY([idRol])
@@ -92,6 +137,10 @@ REFERENCES [dbo].[Roles] ([idRol])
 GO
 
 ALTER TABLE [dbo].[Usuarios] CHECK CONSTRAINT [FK_Usuarios_Roles]
+GO
+
+INSERT INTO [dbo].[Usuarios] ([idRol], [Nombre], [Correo],[Contrasena])
+     VALUES (1, 'Administrador', 'admin@ojs.co', '40bd001563085fc35165329ea1ff5c5ecbdbbeef')
 GO
 
 --UsuariosRegistrados
@@ -172,4 +221,3 @@ GO
 
 ALTER TABLE [dbo].[Soportes] CHECK CONSTRAINT [FK_Soportes_UsuariosRegistrados]
 GO
-

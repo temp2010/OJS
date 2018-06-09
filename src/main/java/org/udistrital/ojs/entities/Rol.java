@@ -16,6 +16,7 @@ public class Rol {
 	
 	private Integer id;
 	private String rol;
+	private String tipo;
 
 	public Rol() {
 	}
@@ -36,6 +37,11 @@ public class Rol {
 	public String getRol() {
 		return rol;
 	}
+	
+	@Column(name = "Tipo", nullable = false, length = 7)
+	public String getTipo() {
+		return tipo;
+	}
 		
 	public void setId(Integer id) {
 		this.id = id;
@@ -43,6 +49,10 @@ public class Rol {
 	
 	public void setRol(String rol) {
 		this.rol = rol;
+	}
+	
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 	
 }

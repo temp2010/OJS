@@ -5,7 +5,7 @@
 	id="WebApp_ID" version="3.1">
 	<display-name>OJS</display-name>
 	<welcome-file-list>
-		<welcome-file>index.xtml</welcome-file>
+		<welcome-file>index.xhtml</welcome-file>
 	</welcome-file-list>
 
 	<!-- JSF -->

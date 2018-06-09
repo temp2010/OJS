@@ -8,4 +8,6 @@ public interface AreaService {
 	
 	public List<Area> listar();
 
+	public Area buscar(Integer id);
+	
 }

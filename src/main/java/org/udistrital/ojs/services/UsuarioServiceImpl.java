@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.udistrital.ojs.daos.UsuarioDao;
 import org.udistrital.ojs.entities.Usuario;
+import org.udistrital.ojs.entities.UsuarioRegistrado;
 
 @Service("UsuarioService")
 @Transactional
@@ -18,6 +19,16 @@ public class UsuarioServiceImpl implements UsuarioService {
 	@Override
 	public List<Usuario> listar() {
 		return usuarioDao.listar();
+	}
+
+	@Override
+	public void crear(Usuario usuario) {
+		usuarioDao.crear(usuario);
+	}
+
+	@Override
+	public void crear(UsuarioRegistrado usuario) {
+		usuarioDao.crear(usuario);
 	}
 
 }

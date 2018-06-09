@@ -1,8 +1,10 @@
 <ui:composition template="index.xhtml"
 	xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-	<ui:define name="content">  
+	<ui:define name="content">
 		<div class="col-sm-6 col-sm-offset-3 form-box">
 			<div class="form-top">
 				<div class="form-top-left">
@@ -14,50 +16,51 @@
 				</div>
 			</div>
 			<div class="form-bottom">
-				<form role="form" action="index" method="post"
-					class="login-form" enctype="multipart/form-data">
+				<form role="form" action="index" method="post" class="login-form"
+					enctype="multipart/form-data">
 					<div class="form-group">
-						<label class="sr-only" for="form-username">Perfil</label> <select
-							class="form-control">
-							<option>Perfil...</option>
-							<option value="4">Escritor</option>
-							<option value="5">Evaluador</option>
+						<label class="sr-only" for="form-profile">Perfil</label>
+						<select name="form-profile" id="form-profile" class="form-control" onchange="changeProfile(this.value)" required="required">
+							<option value="">Perfil...</option>
+							<ui:repeat value="#{roles}" var="rol">
+								<option value="#{rol.id}">#{rol.rol}</option>
+							</ui:repeat>
 						</select>
 					</div>
 					<div class="form-group">
-						<label class="sr-only" for="form-username">Area
-							profesional</label> <select class="form-control">
-							<option>Área profesional...</option>
-								<ui:repeat value="#{areas}" var="area">
-									<option value="#{area.idArea}">#{area.area}</option>
-								</ui:repeat>
+						<label class="sr-only" for="form-area">Area
+							profesional</label> <select name="form-area" id="form-area" class="form-control" required="required">
+							<option value="">Área profesional...</option>
+							<ui:repeat value="#{areas}" var="area">
+								<option value="#{area.id}">#{area.area}</option>
+							</ui:repeat>
 						</select>
 					</div>
 					<div class="form-group">
 						<label class="sr-only" for="form-name">Nombre</label> <input
 							name="form-name" placeholder="Nombre completo..."
-							class="form-control" id="form-name" type="text"></input>
+							class="form-control" id="form-name" type="text" required="required"></input>
 					</div>
 					<div class="form-group">
 						<label class="sr-only" for="form-mail">Correo</label> <input
 							name="form-mail" placeholder="Correo electrónico..."
-							class="form-control" id="form-mail" type="password"></input>
+							class="form-control" id="form-mail" type="email" required="required"></input>
 					</div>
 					<div class="form-group">
-						<label class="sr-only" for="form-profile">Perfil</label>
-						<textarea name="form-profilethematics" placeholder="Perfil..."
-							class="form-control" id="form-profile"></textarea>
+						<label class="sr-only" for="form-professional">Perfil</label>
+						<textarea name="form-professional" placeholder="Perfil..."
+							class="form-control" id="form-professional" required="required"></textarea>
 					</div>
 					<div class="form-group">
-						<label class="sr-only" for="form-thematics">Correo</label>
+						<label class="sr-only" for="form-thematics">Temáticas</label>
 						<textarea name="form-thematics" placeholder="Temáticas..."
-							class="form-control" id="form-thematics"></textarea>
+							class="form-control" id="form-thematics" disabled="" required="required"></textarea>
 					</div>
 					<div class="form-group">
 						<label class="sr-only" for="form-support">Soportes</label> <input
 							name="form-support" placeholder="Soportes..."
 							class="form-control" id="form-support" type="file"
-							multiple="multiple"></input>
+							multiple="multiple" disabled="" required="required"></input>
 					</div>
 					<button type="submit" class="btn">Registrarse!</button>
 				</form>

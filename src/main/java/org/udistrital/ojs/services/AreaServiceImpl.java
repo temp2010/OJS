@@ -20,4 +20,9 @@ public class AreaServiceImpl implements AreaService {
 		return areaDao.listar();
 	}
 
+	@Override
+	public Area buscar(Integer id) {
+		return areaDao.buscar(id);
+	}
+
 }

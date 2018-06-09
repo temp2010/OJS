@@ -14,12 +14,15 @@ public class Estado {
 	
 	private Integer id;
 	private String estado;
+	private Integer orden;
 
 	public Estado() {
 	}
 
-	public Estado(String estado) {
+	public Estado(Integer id, String estado, Integer orden) {
+		this.id = id;
 		this.estado = estado;
+		this.orden = orden;
 	}
 	
 	@Id
@@ -35,12 +38,21 @@ public class Estado {
 		return estado;
 	}
 	
+	@Column(name = "Orden", nullable = false, length = 50)
+	public Integer getOrden() {
+		return orden;
+	}
+	
 	public void setId(Integer id) {
 		this.id = id;
 	}
 	
 	public void setEstado(String estado) {
 		this.estado = estado;
+	}
+	
+	public void setOrden(Integer orden) {
+		this.orden = orden;
 	}
 
 }

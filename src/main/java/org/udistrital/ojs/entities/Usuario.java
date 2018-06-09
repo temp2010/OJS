@@ -25,11 +25,11 @@ public class Usuario {
 	public Usuario() {
 	}
 	
-	public Usuario(Rol rol, String nombre, String correo, Boolean estado) {
+	public Usuario(Rol rol, String nombre, String correo) {
 		this.rol = rol;
 		this.nombre = nombre;
 		this.correo = correo;
-		this.estado = estado;
+		this.estado = true;
 	}
 	
 	@Id

@@ -18,4 +18,14 @@ public class RolDaoImpl implements RolDao {
 		return (List<Rol>) sessionFactory.getCurrentSession().createQuery("FROM Rol").list();
 	}
 
+	@Override
+	public List<Rol> listarPublico() {
+		return (List<Rol>) sessionFactory.getCurrentSession().createQuery("FROM Rol WHERE Tipo = ?").setParameter(0, "Público").list();
+	}
+
+	@Override
+	public Rol Buscar(Integer id) {
+		return (Rol) sessionFactory.getCurrentSession().createQuery("FROM Rol WHERE idRol = ?").setParameter(0, id).list().get(0);
+	}
+
 }

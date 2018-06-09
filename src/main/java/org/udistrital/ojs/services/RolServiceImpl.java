@@ -21,4 +21,16 @@ public class RolServiceImpl implements RolService {
 		return rolDao.listar();
 	}
 
+
+	@Override
+	public List<Rol> listarPublico() {
+		return rolDao.listarPublico();
+	}
+
+
+	@Override
+	public Rol Buscar(Integer id) {
+		return rolDao.Buscar(id);
+	}
+	
 }

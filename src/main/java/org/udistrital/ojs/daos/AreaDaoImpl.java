@@ -18,4 +18,9 @@ public class AreaDaoImpl implements AreaDao {
 		return (List<Area>) sessionFactory.getCurrentSession().createQuery("FROM Area").list();
 	}
 
+	@Override
+	public Area buscar(Integer id) {
+		return (Area) sessionFactory.getCurrentSession().createQuery("FROM Area WHERE idArea = ?").setParameter(0, id).list().get(0);
+	}
+
 }
