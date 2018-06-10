@@ -56,15 +56,15 @@ CREATE TABLE [dbo].[Estados](
 ) ON [PRIMARY]
 GO
 
-INSERT INTO [dbo].[Estados] ([Estado], [Orden]) VALUES ('Registrado', 1)
+INSERT INTO [dbo].[Estados] ([Estado], [Orden]) VALUES ('Devuelto', 1)
 GO
-INSERT INTO [dbo].[Estados] ([Estado], [Orden]) VALUES ('Devuelto', 2)
+INSERT INTO [dbo].[Estados] ([Estado], [Orden]) VALUES ('Registrado', 2)
 GO
-INSERT INTO [dbo].[Estados] ([Estado], [Orden]) VALUES ('Rechazado', 3)
+INSERT INTO [dbo].[Estados] ([Estado], [Orden]) VALUES ('Aprobado Evaluador', 3)
 GO
-INSERT INTO [dbo].[Estados] ([Estado], [Orden]) VALUES ('Aprobado Evaluador', 4)
+INSERT INTO [dbo].[Estados] ([Estado], [Orden]) VALUES ('Aprobado Comité', 4)
 GO
-INSERT INTO [dbo].[Estados] ([Estado], [Orden]) VALUES ('Aprobado Comité', 5)
+INSERT INTO [dbo].[Estados] ([Estado], [Orden]) VALUES ('Rechazado', 5)
 GO
 
 -- Roles
@@ -89,6 +89,8 @@ CREATE TABLE [dbo].[Roles](
 ) ON [PRIMARY]
 GO
 
+INSERT INTO [dbo].[Roles] ([Rol], [Tipo]) VALUES ('Root', 'Privado')
+GO
 INSERT INTO [dbo].[Roles] ([Rol], [Tipo]) VALUES ('Administrador', 'Privado')
 GO
 INSERT INTO [dbo].[Roles] ([Rol], [Tipo]) VALUES ('Validador', 'Privado')
@@ -140,7 +142,10 @@ ALTER TABLE [dbo].[Usuarios] CHECK CONSTRAINT [FK_Usuarios_Roles]
 GO
 
 INSERT INTO [dbo].[Usuarios] ([idRol], [Nombre], [Correo],[Contrasena])
-     VALUES (1, 'Administrador', 'admin@ojs.co', '40bd001563085fc35165329ea1ff5c5ecbdbbeef')
+     VALUES (1, 'Root', 'root@ojs.co', '40bd001563085fc35165329ea1ff5c5ecbdbbeef')
+GO
+INSERT INTO [dbo].[Usuarios] ([idRol], [Nombre], [Correo],[Contrasena])
+     VALUES (2, 'Administrador', 'admin@ojs.co', '40bd001563085fc35165329ea1ff5c5ecbdbbeef')
 GO
 
 --UsuariosRegistrados

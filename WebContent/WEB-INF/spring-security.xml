@@ -10,7 +10,7 @@
 	<http auto-config="true">
 		<intercept-url pattern="/*" access="permitAll" />
 		<form-login login-page="/login"
-			default-target-url="/pages/layout"
+			default-target-url="/pages/"
 			authentication-failure-url="/login?error"
 			username-parameter="username" password-parameter="password" />
 		<logout logout-url="/logout" />

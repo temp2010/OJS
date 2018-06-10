@@ -2,8 +2,6 @@ package org.udistrital.ojs.controllers;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import org.udistrital.ojs.entities.Area;
 import org.udistrital.ojs.entities.Rol;
 import org.udistrital.ojs.entities.Soporte;
 import org.udistrital.ojs.entities.Usuario;
@@ -54,12 +51,12 @@ public class PrincipalController {
 			@RequestParam Map<String, String> request) throws IOException {
 
 		ModelAndView model = new ModelAndView();
-		estadoController eC = new estadoController();
+		EstadoController eC = new EstadoController();
 
 		Rol rol = rolService.Buscar(Integer.parseInt(request.get("form-profile")));
 		Usuario registrado = new Usuario(rol, request.get("form-name"), request.get("form-mail"));
 		usuarioService.crear(registrado);
-		UsuarioRegistrado usuarioRegistrado = new UsuarioRegistrado(registrado.getId(), eC.obtenerEstado(null),
+		UsuarioRegistrado usuarioRegistrado = new UsuarioRegistrado(registrado.getId(), eC.obtenerEstado(new UsuarioRegistrado(), ""),
 				areaService.buscar(Integer.parseInt(request.get("form-area"))), request.get("form-professional"));
 		if (soporteArchivos.length == 0) {
 			usuarioService.crear(usuarioRegistrado);			
@@ -101,7 +98,7 @@ public class PrincipalController {
 		return model;
 	}
 
-	@RequestMapping(value = "/pages/layout", method = RequestMethod.POST)
+	@RequestMapping(value = "/pages/index", method = RequestMethod.POST)
 	public void principal() {
 	}
 

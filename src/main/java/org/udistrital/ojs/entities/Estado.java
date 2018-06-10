@@ -19,10 +19,8 @@ public class Estado {
 	public Estado() {
 	}
 
-	public Estado(Integer id, String estado, Integer orden) {
+	public Estado(Integer id) {
 		this.id = id;
-		this.estado = estado;
-		this.orden = orden;
 	}
 	
 	@Id

@@ -26,6 +26,11 @@ public class UsuarioServiceImpl implements UsuarioService {
 	public List<Usuario> listar(Estado estado) {
 		return usuarioDao.listar(estado);
 	}
+	
+	@Override
+	public Usuario buscar(String id) {
+		return usuarioDao.buscar(id);
+	}
 
 	@Override
 	public void crear(Usuario usuario) {

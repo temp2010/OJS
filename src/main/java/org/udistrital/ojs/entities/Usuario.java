@@ -8,6 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
@@ -15,6 +16,7 @@ import org.hibernate.annotations.GenericGenerator;
 public class Usuario {
 	
 	private Integer id;
+	private String idMD5;
 	private Rol rol;
 	private String nombre;
 	private String correo;
@@ -38,6 +40,10 @@ public class Usuario {
 	@Column(name = "idUsuario", unique = true, nullable = false)
 	public Integer getId() {
 		return id;
+	}
+	
+	public String getIdMD5() {
+		return DigestUtils.md5Hex(String.valueOf(id));
 	}
 	
 	@OneToOne
@@ -74,6 +80,10 @@ public class Usuario {
 	
 	public void setId(Integer id) {
 		this.id = id;
+	}
+	
+	public void setIdMD5(String idMD5) {
+		this.idMD5 = idMD5;
 	}
 	
 	public void setRol(Rol rol) {

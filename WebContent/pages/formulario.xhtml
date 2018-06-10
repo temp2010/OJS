@@ -1,4 +1,4 @@
-<ui:composition template="layout.xhtml"
+<ui:composition template="index.xhtml"
 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
@@ -11,165 +11,73 @@
 						<div class="container">
 							<div class="row tm_pb_row tm_pb_row_1 tm_pb_col_padding_reset">
 								<div
-									class="tm_pb_column tm_pb_column_1_3  tm_pb_column_17 col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 tm_pb_vertical_alligment_start">
-									<div
-										class="tm_pb_text tm_pb_module tm_pb_bg_layout_light tm_pb_text_align_left  tm_pb_text_10">
-										<h3>Get in Touch with Me</h3>
-									</div>
-									<hr class="tm_pb_module tm_pb_space tm_pb_divider_9" />
-									<div
-										class="tm_pb_text tm_pb_module tm_pb_bg_layout_light tm_pb_text_align_left  tm_pb_text_11">
-										<p>Thanks to the fact I?ve penned almost a dozen of books
-											by now, I?ve got a real following of businesspeople readers.
-											I am always extra happy to answer their questions!</p>
-									</div>
-									<hr class="tm_pb_module tm_pb_space tm_pb_divider_10" />
-									<div
-										class="tm_pb_widget_area cherry-sidebars-1 tm_pb_widget_area_left clearfix tm_pb_module tm_pb_bg_layout_light  tm_pb_sidebar_1">
-										<aside id="thebook_contact_information_widget-2"
-											class="widget contact-information-widget">
-											<ul class="contact-information-widget__inner">
-												<li
-													class="contact-information__item contact-information__item--icon">
-													<span class="icon linearicon linearicon-telephone"></span>
-													+1 800 559 6580
-												</li>
-												<li
-													class="contact-information__item contact-information__item--icon">
-													<span class="icon linearicon linearicon-clock3"></span> 7
-													Days a week from 9:00 am to 7:00 pm
-												</li>
-												<li
-													class="contact-information__item contact-information__item--icon">
-													<span class="icon linearicon linearicon-envelope-open"></span>
-													<a
-													href="https://ld-wp.template-help.com/woocommerce_62111_v1/info@demolink.org">
-														info@demolink.org</a>
-												</li>
-											</ul>
-										</aside>
-									</div>
-									<ul
-										class="tm_pb_social_media_follow tm_pb_module tm_pb_bg_layout_light  tm_pb_social_media_follow_0 clearfix">
-										<li
-											class="tm_pb_social_icon tm_pb_social_network_link tm-social-facebook tm_pb_social_media_follow_network_0">
-											<a href="https://www.facebook.com/TemplateMonster/"
-											class="icon rounded_rectangle" title="facebook"> <span
-												class="tm-pb-icon" data-icon="?"></span> <span
-												class="tm-pb-tooltip">facebook</span>
-										</a>
-										</li>
-										<li
-											class="tm_pb_social_icon tm_pb_social_network_link tm-social-twitter tm_pb_social_media_follow_network_1">
-											<a href="https://twitter.com/templatemonster"
-											class="icon rounded_rectangle" title="twitter"> <span
-												class="tm-pb-icon" data-icon="?"></span> <span
-												class="tm-pb-tooltip">twitter</span>
-										</a>
-										</li>
-										<li
-											class="tm_pb_social_icon tm_pb_social_network_link tm-social-google tm_pb_social_media_follow_network_2">
-											<a href="https://plus.google.com/+TemplateMonster"
-											class="icon rounded_rectangle" title="google"> <span
-												class="tm-pb-icon" data-icon="?"></span> <span
-												class="tm-pb-tooltip">google</span>
-										</a>
-										</li>
-										<li
-											class="tm_pb_social_icon tm_pb_social_network_link tm-social-vimeo tm_pb_social_media_follow_network_3">
-											<a href="https://vimeo.com/user10572867"
-											class="icon rounded_rectangle" title="vimeo"> <span
-												class="tm-pb-icon" data-icon="?"></span> <span
-												class="tm-pb-tooltip">vimeo</span>
-										</a>
-										</li>
-										<li
-											class="tm_pb_social_icon tm_pb_social_network_link tm-social-youtube tm_pb_social_media_follow_network_4">
-											<a
-											href="https://www.youtube.com/channel/UC6BqG25oc0HbE6k5iGOYTvw"
-											class="icon rounded_rectangle" title="youtube"> <span
-												class="tm-pb-icon" data-icon="?"></span> <span
-												class="tm-pb-tooltip">youtube</span>
-										</a>
-										</li>
-										<li
-											class="tm_pb_social_icon tm_pb_social_network_link tm-social-pinterest tm_pb_social_media_follow_network_5">
-											<a href="https://www.pinterest.com/templatemonster/"
-											class="icon rounded_rectangle" title="pinterest"> <span
-												class="tm-pb-icon" data-icon="?"></span> <span
-												class="tm-pb-tooltip">pinterest</span>
-										</a>
-										</li>
-									</ul>
-								</div>
-								<div
 									class="tm_pb_column tm_pb_column_2_3  tm_pb_column_18 col-xs-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 tm_pb_vertical_alligment_start">
 									<div
 										class="tm_pb_text tm_pb_module tm_pb_bg_layout_light tm_pb_text_align_left  tm_pb_text_12">
-										<h3>Contact Form</h3>
+										<h3>#{usuario.rol.rol} / #{usuario.nombre}</h3>
 									</div>
 									<hr class="tm_pb_module tm_pb_space tm_pb_divider_11" />
 									<div id="tm_pb_contact_form_0"
 										class="tm_pb_contact_form tm_pb_contact_form_0 tm_pb_contact_form_container clearfix tm_pb_module"
 										data-form_unique_num="0">
+										<div
+											class="tm_pb_module tm_pb_toggle  tm_pb_accordion_item_1 tm_pb_toggle_open">
+											<h5>Área Profesional</h5>
+											<div class="tm_pb_toggle_content clearfix"
+												style="display: block;">
+												<p>#{usuario.usuarioRegistrado.area.area}</p>
+											</div>
+										</div>
+										<div
+											class="tm_pb_module tm_pb_toggle  tm_pb_accordion_item_1 tm_pb_toggle_open">
+											<h5>Perfil Profesional</h5>
+											<div class="tm_pb_toggle_content clearfix"
+												style="display: block;">
+												<p>#{usuario.usuarioRegistrado.perfil}</p>
+											</div>
+										</div>
+										<div
+											class="tm_pb_module tm_pb_toggle  tm_pb_accordion_item_1 tm_pb_toggle_open">
+											<h5>Temáticas</h5>
+											<div class="tm_pb_toggle_content clearfix"
+												style="display: block;">
+												<p>#{usuario.usuarioRegistrado.tematica}</p>
+											</div>
+										</div>
+										<div
+											class="tm_pb_module tm_pb_toggle  tm_pb_accordion_item_1 tm_pb_toggle_open">
+											<h5>Soportes</h5>
+											<div class="tm_pb_toggle_content clearfix"
+												style="display: block;">
+												<ui:repeat value="#{soportes}" var="soporte">
+													<p>
+														<a href="#{soporte.soporte}">#{soporte.soporte}</a>
+													</p>
+												</ui:repeat>
+											</div>
+										</div>
 										<form class="tm_pb_contact_form clearfix" method="post"
-											action="https://ld-wp.template-help.com/woocommerce_62111_v1/">
+											action="users" id="form-form">
 											<div class="tm-pb-contact-message"></div>
 											<div class="row">
 												<div
-													class="tm_pb_contact_field col-md-12  tm_pb_contact_field_0">
-													<input id="tm_pb_contact_name_1"
-														class="tm_pb_contact_form_input"
-														name="tm_pb_contact_name_1" placeholder="Your name"
-														data-required_mark="required" data-field_type="input"
-														data-original_id="name" data-original_title="Your name"
-														type="text" />
-												</div>
-												<div
-													class="tm_pb_contact_field col-md-12  tm_pb_contact_field_1">
-													<input id="tm_pb_contact_email_1"
-														class="tm_pb_contact_form_input"
-														name="tm_pb_contact_email_1" placeholder="Your e-mail"
-														data-required_mark="required" data-field_type="email"
-														data-original_id="email" data-original_title="Your e-mail"
-														type="email" />
-												</div>
-												<div
-													class="tm_pb_contact_field col-md-12  tm_pb_contact_field_2">
-													<input id="tm_pb_contact_phone_1"
-														class="tm_pb_contact_form_input"
-														name="tm_pb_contact_phone_1" placeholder="Your phone"
-														data-required_mark="required" data-field_type="input"
-														data-original_id="phone" data-original_title="Your phone"
-														type="text" />
-												</div>
-												<div
 													class="tm_pb_contact_field col-md-12  tm_pb_contact_field_3">
-													<textarea name="tm_pb_contact_message_1"
-														id="tm_pb_contact_message_1"
-														class="tm_pb_contact_message tm_pb_contact_form_input"
-														placeholder="Your message" data-required_mark="required"
-														data-field_type="text" data-original_id="message"
-														data-original_title="Your message"></textarea>
+													<textarea name="form-observation"
+														placeholder="Observaciones..." class="form-control"
+														id="form-observation"></textarea>
 												</div>
-
-											</div>
-											<input value="tm_contact_proccess"
-												name="tm_pb_contactform_submit_0" type="hidden" /><input
-												name="tm_pb_contactform_validate_0"
-												class="tm_pb_contactform_validate_field" type="text" />
+											</div><br />
 											<div class="tm_contact_bottom_container">
-												<button type="submit"
-													class="tm_pb_contact_submit tm_pb_button">Send</button>
+												<input type="button" value="Aceptar" class="btn btn-success" onclick="aprobar('aceptar')" />
+												<input type="button" value="Devolver" class="btn btn-warning" onclick="aprobar('devolver')" />
+												<input type="button" value="Rechazar" class="btn btn-danger" onclick="aprobar('rechazar')" />
 											</div>
-											<input id="_wpnonce-tm-pb-contact-form-submitted"
-												name="_wpnonce-tm-pb-contact-form-submitted"
-												value="80d61dcebf" type="hidden" /><input
-												name="_wp_http_referer" value="/woocommerce_62111_v1/"
-												type="hidden" />
+											<input type="hidden" name="form-user" value="#{usuario.idMD5}" />
+											<input type="hidden" name="form-action" id="form-accion" />
 										</form>
 									</div>
 								</div>
+
 							</div>
 						</div>
 					</div>
