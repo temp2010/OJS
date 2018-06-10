@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.udistrital.ojs.daos.UsuarioDao;
+import org.udistrital.ojs.entities.Estado;
 import org.udistrital.ojs.entities.Usuario;
 import org.udistrital.ojs.entities.UsuarioRegistrado;
 
@@ -19,6 +20,11 @@ public class UsuarioServiceImpl implements UsuarioService {
 	@Override
 	public List<Usuario> listar() {
 		return usuarioDao.listar();
+	}
+	
+	@Override
+	public List<Usuario> listar(Estado estado) {
+		return usuarioDao.listar(estado);
 	}
 
 	@Override
