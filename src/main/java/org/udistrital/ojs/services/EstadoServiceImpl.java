@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.udistrital.ojs.daos.EstadoDao;
-import org.udistrital.ojs.entities.Estado;
+import org.udistrital.ojs.models.Estado;
 
 @Service("EstadoService")
 @Transactional

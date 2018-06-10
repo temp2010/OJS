@@ -1,10 +1,11 @@
 package org.udistrital.ojs.services;
 
 import java.util.List;
+import java.util.Map;
 
-import org.udistrital.ojs.entities.Estado;
-import org.udistrital.ojs.entities.Usuario;
-import org.udistrital.ojs.entities.UsuarioRegistrado;
+import org.udistrital.ojs.models.Estado;
+import org.udistrital.ojs.models.Usuario;
+import org.udistrital.ojs.models.UsuarioRegistrado;
 
 public interface UsuarioService {
 	
@@ -17,5 +18,7 @@ public interface UsuarioService {
 	public void crear(Usuario usuario);
 	
 	public void crear(UsuarioRegistrado usuario);
+	
+	public List<List<Map<Object, Object>>> datos();
 	
 }

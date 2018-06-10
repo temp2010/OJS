@@ -1,4 +1,4 @@
-package org.udistrital.ojs.entities;
+package org.udistrital.ojs.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

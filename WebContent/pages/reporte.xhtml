@@ -1,0 +1,69 @@
+<ui:composition template="index.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+	<ui:define name="content">
+		<div class="entry-content">
+			<div class="tm_builder_outer_content" id="tm_builder_outer_content">
+				<div class="tm_builder_inner_content tm_pb_gutters3">
+					<div id="book-contacts"
+						class="tm_pb_section  tm_pb_section_8 tm_pb_with_background tm_section_regular tm_section_transparent">
+						<div class="container">
+							<div class=" row tm_pb_row tm_pb_row_1 tm_pb_col_padding_reset">
+								<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+								<script type="text/javascript">
+								window.onload = function() {
+
+									var dps = [[],[]];
+									var chart = new CanvasJS.Chart("chartContainer", {
+										theme: "light2",
+										animationEnabled: true,
+										title: {
+											text: "Reporte general"
+										},
+										subtitles: [{
+											text: "N° Usuarios vs Estado registro"
+										}],
+										axisY: {
+											title: "N° de Usuarios"
+										},
+										data: [{
+											type: "spline",
+											name: "Escritores",
+											showInLegend: true,
+											xValueFormatString: "####",
+											yValueFormatString: "#### de usuarios",
+											dataPoints: dps[0]
+										},{
+											type: "spline",
+											name: "Evaluadores",
+											showInLegend: true,
+											xValueFormatString: "####",
+											yValueFormatString: "#### usuarios",
+											dataPoints: dps[1]
+										}]
+									});
+									 
+									var yValue;
+									var label;
+									
+									<ui:repeat value="#{datosReporte}" var="datos" varStatus="loop">
+										<ui:repeat value="#{datos}" var="dato">
+											yValue = parseFloat("#{dato.y}");
+											label = "#{dato.x}";
+											
+											dps[parseInt("#{loop.index}")].push({label : label, y : yValue});
+										</ui:repeat>
+									</ui:repeat>
+
+									chart.render();
+								}
+								</script>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>

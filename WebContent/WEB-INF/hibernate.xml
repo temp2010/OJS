@@ -7,11 +7,11 @@ Configuration DTD 3.0//EN"
 		<property name="connection.pool_size">5</property>
 		<property name="hbm2ddl.auto">update</property>
 		<property name="show_sql">true</property>
-		<mapping class="org.udistrital.ojs.entities.Area" />
-		<mapping class="org.udistrital.ojs.entities.Estado" />
-		<mapping class="org.udistrital.ojs.entities.Rol" />
-		<mapping class="org.udistrital.ojs.entities.Soporte" />
-		<mapping class="org.udistrital.ojs.entities.Usuario" />
-		<mapping class="org.udistrital.ojs.entities.UsuarioRegistrado" />
+		<mapping class="org.udistrital.ojs.models.Area" />
+		<mapping class="org.udistrital.ojs.models.Estado" />
+		<mapping class="org.udistrital.ojs.models.Rol" />
+		<mapping class="org.udistrital.ojs.models.Soporte" />
+		<mapping class="org.udistrital.ojs.models.Usuario" />
+		<mapping class="org.udistrital.ojs.models.UsuarioRegistrado" />
 	</session-factory>
 </hibernate-configuration>

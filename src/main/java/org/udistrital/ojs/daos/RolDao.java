@@ -2,7 +2,7 @@ package org.udistrital.ojs.daos;
 
 import java.util.List;
 
-import org.udistrital.ojs.entities.Rol;
+import org.udistrital.ojs.models.Rol;
 
 public interface RolDao {
 	

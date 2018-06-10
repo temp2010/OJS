@@ -2,7 +2,7 @@ package org.udistrital.ojs.daos;
 
 import java.util.List;
 
-import org.udistrital.ojs.entities.Area;
+import org.udistrital.ojs.models.Area;
 
 public interface AreaDao {
 	

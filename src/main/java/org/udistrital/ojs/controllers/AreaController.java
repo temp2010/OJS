@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import org.udistrital.ojs.entities.Area;
+import org.udistrital.ojs.models.Area;
 import org.udistrital.ojs.services.AreaService;
 
 @Controller

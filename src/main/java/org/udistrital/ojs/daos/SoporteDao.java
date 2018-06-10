@@ -1,6 +1,6 @@
 package org.udistrital.ojs.daos;
 
-import org.udistrital.ojs.entities.Soporte;
+import org.udistrital.ojs.models.Soporte;
 
 public interface SoporteDao {
 	

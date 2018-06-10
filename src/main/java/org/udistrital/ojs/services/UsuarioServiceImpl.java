@@ -1,14 +1,15 @@
 package org.udistrital.ojs.services;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.udistrital.ojs.daos.UsuarioDao;
-import org.udistrital.ojs.entities.Estado;
-import org.udistrital.ojs.entities.Usuario;
-import org.udistrital.ojs.entities.UsuarioRegistrado;
+import org.udistrital.ojs.models.Estado;
+import org.udistrital.ojs.models.Usuario;
+import org.udistrital.ojs.models.UsuarioRegistrado;
 
 @Service("UsuarioService")
 @Transactional
@@ -40,6 +41,11 @@ public class UsuarioServiceImpl implements UsuarioService {
 	@Override
 	public void crear(UsuarioRegistrado usuario) {
 		usuarioDao.crear(usuario);
+	}
+
+	@Override
+	public List<List<Map<Object, Object>>> datos() {
+		return usuarioDao.datos();
 	}
 
 }

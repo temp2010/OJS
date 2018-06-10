@@ -1,8 +1,8 @@
 package org.udistrital.ojs.controllers;
 
 import org.springframework.stereotype.Controller;
-import org.udistrital.ojs.entities.Estado;
-import org.udistrital.ojs.entities.UsuarioRegistrado;
+import org.udistrital.ojs.models.Estado;
+import org.udistrital.ojs.models.UsuarioRegistrado;
 
 @Controller
 public class EstadoController {

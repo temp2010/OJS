@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import org.udistrital.ojs.entities.Estado;
-import org.udistrital.ojs.entities.Soporte;
-import org.udistrital.ojs.entities.Usuario;
+import org.udistrital.ojs.models.Estado;
+import org.udistrital.ojs.models.Soporte;
+import org.udistrital.ojs.models.Usuario;
 import org.udistrital.ojs.services.EstadoService;
 import org.udistrital.ojs.services.UsuarioService;
 
 @Controller
-public class UserController {
+public class UsuarioController {
 	
 	private String accionGlobal;
 	private EstadoController eC = new EstadoController();

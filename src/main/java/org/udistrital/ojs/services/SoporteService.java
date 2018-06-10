@@ -1,6 +1,6 @@
 package org.udistrital.ojs.services;
 
-import org.udistrital.ojs.entities.Soporte;
+import org.udistrital.ojs.models.Soporte;
 
 public interface SoporteService {
 

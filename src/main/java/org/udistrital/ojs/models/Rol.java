@@ -1,4 +1,4 @@
-package org.udistrital.ojs.entities;
+package org.udistrital.ojs.models;
 
 import java.util.Set;
 
