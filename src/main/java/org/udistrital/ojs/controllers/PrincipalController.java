@@ -98,7 +98,7 @@ public class PrincipalController {
 		return model;
 	}
 
-	@RequestMapping(value = "/pages/index", method = RequestMethod.POST)
+	@RequestMapping(value = "/pages/index")
 	public void principal() {
 	}
 

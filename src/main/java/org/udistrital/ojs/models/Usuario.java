@@ -42,6 +42,7 @@ public class Usuario {
 		return id;
 	}
 	
+	@Column(name = "idMD5", nullable = false, length = 32)
 	public String getIdMD5() {
 		return DigestUtils.md5Hex(String.valueOf(id));
 	}

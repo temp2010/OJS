@@ -14,6 +14,8 @@ public interface UsuarioDao {
 	public List<Usuario> listar(Estado estado);
 	
 	public Usuario buscar(String id);
+	
+	public Usuario validar(String id);
 
 	public void crear(Usuario usuario);
 	

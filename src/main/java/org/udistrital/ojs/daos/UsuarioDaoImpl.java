@@ -58,6 +58,12 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	}
 
 	@Override
+	public Usuario validar(String correo) {
+		return (Usuario) sessionFactory.getCurrentSession().createQuery("FROM Usuario WHERE Correo = ?")
+				.setParameter(0, correo).list().get(0);
+	}
+
+	@Override
 	public List<List<Map<Object, Object>>> datos() {
 
 		Map<Object, Object> map = null;
@@ -74,7 +80,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 		map.put("x", "Devueltas");
 		map.put("y", 35);
 		dataPoints1.add(map);
-		
+
 		map = new HashMap<>();
 		map.put("x", "Rechazadas");
 		map.put("y", 15);
@@ -89,7 +95,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 		map.put("x", "Devueltas");
 		map.put("y", 25);
 		dataPoints2.add(map);
-		
+
 		map = new HashMap<>();
 		map.put("x", "Rechazadas");
 		map.put("y", 27);

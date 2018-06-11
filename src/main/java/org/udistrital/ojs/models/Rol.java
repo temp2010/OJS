@@ -33,7 +33,7 @@ public class Rol {
 		return id;
 	}
 	
-	@Column(name = "Rol", nullable = false, length = 50)
+	@Column(name = "Rol", nullable = false, length = 15)
 	public String getRol() {
 		return rol;
 	}

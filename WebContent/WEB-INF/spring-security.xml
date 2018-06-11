@@ -8,9 +8,14 @@
 	http://www.springframework.org/schema/security/spring-security.xsd">
 
 	<http auto-config="true">
-		<intercept-url pattern="/*" access="permitAll" />
+		<intercept-url pattern="index" access="permitAll" />
+		<intercept-url pattern="login" access="permitAll" />
+		<intercept-url pattern="register" access="permitAll" />
+		<intercept-url pattern="/pages/index"
+			access="hasRole('ROLE_ROOT')" />
 		<form-login login-page="/login"
-			default-target-url="/pages/"
+			login-processing-url="/loginValidate"
+			default-target-url="/pages/index"
 			authentication-failure-url="/login?error"
 			username-parameter="username" password-parameter="password" />
 		<logout logout-url="/logout" />
@@ -18,11 +23,13 @@
 	</http>
 
 	<authentication-manager>
-		<authentication-provider>
-			<user-service>
-				<user name="aa" password="pp" authorities="ROLE_USER" />
-			</user-service>
+		<authentication-provider
+			user-service-ref="customUserDetailsService">
+			<password-encoder hash="sha" />
 		</authentication-provider>
 	</authentication-manager>
+
+	<beans:bean id="customUserDetailsService"
+		class="org.udistrital.ojs.custom.CustomUserDetailsService" />
 
 </beans:beans>

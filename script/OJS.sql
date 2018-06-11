@@ -2,7 +2,6 @@
 USE [ojs]
 GO
 
-/****** Object:  Table [dbo].[AreasProfesionales]    Script Date: 05/06/2018 05:26:27 p. m. ******/
 SET ANSI_NULLS ON
 GO
 
@@ -38,7 +37,6 @@ GO
 USE [ojs]
 GO
 
-/****** Object:  Table [dbo].[Estados]    Script Date: 05/06/2018 05:26:53 p. m. ******/
 SET ANSI_NULLS ON
 GO
 
@@ -71,7 +69,6 @@ GO
 USE [ojs]
 GO
 
-/****** Object:  Table [dbo].[Roles]    Script Date: 05/06/2018 05:27:08 p. m. ******/
 SET ANSI_NULLS ON
 GO
 
@@ -80,7 +77,7 @@ GO
 
 CREATE TABLE [dbo].[Roles](
 	[idRol] [smallint] IDENTITY(1,1) NOT NULL,
-	[Rol] [varchar](50) NOT NULL,
+	[Rol] [varchar](15) NOT NULL,
 	[Tipo] [varchar](7) NOT NULL,
  CONSTRAINT [PK_Roles] PRIMARY KEY CLUSTERED 
 (
@@ -89,24 +86,23 @@ CREATE TABLE [dbo].[Roles](
 ) ON [PRIMARY]
 GO
 
-INSERT INTO [dbo].[Roles] ([Rol], [Tipo]) VALUES ('Root', 'Privado')
+INSERT INTO [dbo].[Roles] ([Rol], [Tipo]) VALUES ('ROOT', 'Privado')
 GO
-INSERT INTO [dbo].[Roles] ([Rol], [Tipo]) VALUES ('Administrador', 'Privado')
+INSERT INTO [dbo].[Roles] ([Rol], [Tipo]) VALUES ('ADMINISTRADOR', 'Privado')
 GO
-INSERT INTO [dbo].[Roles] ([Rol], [Tipo]) VALUES ('Validador', 'Privado')
+INSERT INTO [dbo].[Roles] ([Rol], [Tipo]) VALUES ('VALIDADOR', 'Privado')
 GO
-INSERT INTO [dbo].[Roles] ([Rol], [Tipo]) VALUES ('Comité', 'Privado')
+INSERT INTO [dbo].[Roles] ([Rol], [Tipo]) VALUES ('COMITE', 'Privado')
 GO
-INSERT INTO [dbo].[Roles] ([Rol], [Tipo]) VALUES ('Evaluador', 'Público')
+INSERT INTO [dbo].[Roles] ([Rol], [Tipo]) VALUES ('EVALUADOR', 'Público')
 GO
-INSERT INTO [dbo].[Roles] ([Rol], [Tipo]) VALUES ('Escritor', 'Público')
+INSERT INTO [dbo].[Roles] ([Rol], [Tipo]) VALUES ('ESCRITOR', 'Público')
 GO
 
 --Usuarios
 USE [ojs]
 GO
 
-/****** Object:  Table [dbo].[Usuarios]    Script Date: 05/06/2018 05:27:40 p. m. ******/
 SET ANSI_NULLS ON
 GO
 
@@ -115,6 +111,7 @@ GO
 
 CREATE TABLE [dbo].[Usuarios](
 	[idUsuario] [int] IDENTITY(1,1) NOT NULL,
+	[idMD5] [varchar](32) NULL,
 	[idRol] [smallint] NOT NULL,
 	[Nombre] [varchar](50) NOT NULL,
 	[Correo] [varchar](50) NOT NULL,
@@ -147,12 +144,17 @@ GO
 INSERT INTO [dbo].[Usuarios] ([idRol], [Nombre], [Correo],[Contrasena])
      VALUES (2, 'Administrador', 'admin@ojs.co', '40bd001563085fc35165329ea1ff5c5ecbdbbeef')
 GO
+INSERT INTO [dbo].[Usuarios] ([idRol], [Nombre], [Correo],[Contrasena])
+     VALUES (3, 'Validador', 'valid@ojs.co', '40bd001563085fc35165329ea1ff5c5ecbdbbeef')
+GO
+INSERT INTO [dbo].[Usuarios] ([idRol], [Nombre], [Correo],[Contrasena])
+     VALUES (4, 'Comité', 'comite@ojs.co', '40bd001563085fc35165329ea1ff5c5ecbdbbeef')
+GO
 
 --UsuariosRegistrados
 USE [ojs]
 GO
 
-/****** Object:  Table [dbo].[UsuariosRegistrados]    Script Date: 05/06/2018 05:28:10 p. m. ******/
 SET ANSI_NULLS ON
 GO
 
@@ -202,7 +204,6 @@ GO
 USE [ojs]
 GO
 
-/****** Object:  Table [dbo].[Soportes]    Script Date: 05/06/2018 05:27:21 p. m. ******/
 SET ANSI_NULLS ON
 GO
 

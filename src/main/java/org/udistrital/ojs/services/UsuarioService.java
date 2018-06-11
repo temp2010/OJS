@@ -14,6 +14,8 @@ public interface UsuarioService {
 	public List<Usuario> listar(Estado estado);
 	
 	public Usuario buscar(String id);
+	
+	public Usuario validar(String correo);
 
 	public void crear(Usuario usuario);
 	

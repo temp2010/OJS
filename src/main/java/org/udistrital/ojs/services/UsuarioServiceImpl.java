@@ -32,6 +32,11 @@ public class UsuarioServiceImpl implements UsuarioService {
 	public Usuario buscar(String id) {
 		return usuarioDao.buscar(id);
 	}
+	
+	@Override
+	public Usuario validar(String correo) {
+		return usuarioDao.validar(correo);
+	}
 
 	@Override
 	public void crear(Usuario usuario) {

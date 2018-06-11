@@ -15,7 +15,7 @@
 				</div>
 			</div>
 			<div class="form-bottom">
-				<form role="form" action="pages/index" method="post" class="login-form">
+				<form role="form" action="loginValidate" method="post" class="login-form">
 					<div class="form-group">
 						<label class="sr-only" for="form-username">Usuario</label> <input
 							name="username" placeholder="Correo electrónico..."
@@ -28,6 +28,7 @@
 							type="password"></input>
 					</div>
 					<button type="submit" class="btn">Ingresar!</button>
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				</form>
 			</div>
 		</div>
