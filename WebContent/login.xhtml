@@ -1,5 +1,6 @@
 <ui:composition template="index.xhtml"
 	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jstl/core"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
 	<ui:define name="content">
@@ -15,22 +16,33 @@
 				</div>
 			</div>
 			<div class="form-bottom">
-				<form role="form" action="loginValidate" method="post" class="login-form">
+				<form role="form" action="loginValidate" method="post"
+					class="login-form">
 					<div class="form-group">
 						<label class="sr-only" for="form-username">Usuario</label> <input
 							name="username" placeholder="Correo electrónico..."
-							class="form-username form-control" id="username" type="text"></input>
+							class="form-username form-control" id="username" type="email" required="required"></input>
 					</div>
 					<div class="form-group">
 						<label class="sr-only" for="form-password">Contraseña</label> <input
 							name="password" placeholder="Contraseña..."
-							class="form-password form-control" id="password"
-							type="password"></input>
+							class="form-password form-control" id="password" type="password" required="required"></input>
 					</div>
 					<button type="submit" class="btn">Ingresar!</button>
-					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+					<input type="hidden" name="${_csrf.parameterName}"
+						value="${_csrf.token}" />
 				</form>
 			</div>
 		</div>
+		<c:if test="${param.error != null}">
+			<div data-notify="container"
+				class="col-xs-11 col-sm-4 alert alert-danger animated fadeInDown"
+				role="alert" data-notify-position="top-right"
+				style="display: inline-block; margin: 0px auto; position: fixed; transition: all 0.5s ease-in-out 0s; z-index: 1031; top: 20px; right: 20px; animation-iteration-count: 1;">
+				<span data-notify="icon" class="glyphicon glyphicon-warning-sign"></span>
+				<span data-notify="title">Error!</span> <span data-notify="message">Usuario
+					o contraseña incorrectos</span>
+			</div>
+		</c:if>
 	</ui:define>
 </ui:composition>

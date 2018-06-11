@@ -9,6 +9,8 @@ function changeProfile(profile) {
 }
 
 function aprobar(accion) {
-	$('#form-accion').val(accion);
-	$('#form-form').submit();
+	if(window.confirm('¿Desea '+accion+' este registro?')) {
+		$('#form-accion').val(accion);
+		$('#form-form').submit();
+	}
 }

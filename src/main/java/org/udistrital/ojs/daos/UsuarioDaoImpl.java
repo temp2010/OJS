@@ -59,8 +59,13 @@ public class UsuarioDaoImpl implements UsuarioDao {
 
 	@Override
 	public Usuario validar(String correo) {
-		return (Usuario) sessionFactory.getCurrentSession().createQuery("FROM Usuario WHERE Correo = ?")
-				.setParameter(0, correo).list().get(0);
+		List<Usuario> usuario = sessionFactory.getCurrentSession().createQuery("FROM Usuario WHERE Correo = ?")
+				.setParameter(0, correo).list();
+		
+		if (!usuario.isEmpty())
+			return usuario.get(0);
+		else
+			return null;
 	}
 
 	@Override

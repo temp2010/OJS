@@ -28,12 +28,12 @@
 						role="navigation">
 						<ul id="main-menu" class="menu stuckMenu"
 							style="position: relative; top: 0px; transform: translateX(0px);">							
-							<c:if test="#{rol[0] == 'ROLE_ROOT' or rol[0] == 'ROL_VALIDADOR'}">
+							<c:if test="#{rol[0] == 'ROLE_ROOT' or rol[0] == 'ROLE_VALIDADOR'}">
 							<li id="menu-item-1235"
 								class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1235"><a
 								href="users?accion=validar">Solicitudes</a></li>
 							</c:if>
-							<c:if test="#{rol[0] == 'ROLE_ROOT' or rol[0] == 'ROL_COMITE'}">
+							<c:if test="#{rol[0] == 'ROLE_ROOT' or rol[0] == 'ROLE_COMITE'}">
 							<li id="menu-item-1237"
 								class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1237"><a
 								href="users?accion=comite">Comité</a></li>

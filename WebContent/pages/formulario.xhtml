@@ -1,5 +1,6 @@
 <ui:composition template="index.xhtml"
 	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jstl/core"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
 	<ui:define name="content">
@@ -9,7 +10,16 @@
 					<div id="book-contacts"
 						class="tm_pb_section  tm_pb_section_8 tm_pb_with_background tm_section_regular tm_section_transparent">
 						<div class="container">
+
 							<div class="row tm_pb_row tm_pb_row_1 tm_pb_col_padding_reset">
+								<div
+									class="tm_pb_column tm_pb_column_2_3  tm_pb_column_18 col-xs-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 tm_pb_vertical_alligment_start"
+									style="text-align: right;">
+									<form action="users">
+										<input type="submit" value="Volver" class="btn btn-info" /> <input
+											type="hidden" name="volver" />
+									</form>
+								</div>
 								<div
 									class="tm_pb_column tm_pb_column_2_3  tm_pb_column_18 col-xs-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 tm_pb_vertical_alligment_start">
 									<div
@@ -22,62 +32,101 @@
 										data-form_unique_num="0">
 										<div
 											class="tm_pb_module tm_pb_toggle  tm_pb_accordion_item_1 tm_pb_toggle_open">
-											<h5>Área Profesional</h5>
+											<h5>Correo Electrónico</h5>
 											<div class="tm_pb_toggle_content clearfix"
 												style="display: block;">
-												<p>#{usuario.usuarioRegistrado.area.area}</p>
+												<p>#{usuario.correo}</p>
 											</div>
 										</div>
 										<div
 											class="tm_pb_module tm_pb_toggle  tm_pb_accordion_item_1 tm_pb_toggle_open">
-											<h5>Perfil Profesional</h5>
+											<h5>Estado</h5>
 											<div class="tm_pb_toggle_content clearfix"
 												style="display: block;">
-												<p>#{usuario.usuarioRegistrado.perfil}</p>
+												<p>#{usuario.estado?"Activo":"Inactivo"}</p>
 											</div>
 										</div>
-										<div
-											class="tm_pb_module tm_pb_toggle  tm_pb_accordion_item_1 tm_pb_toggle_open">
-											<h5>Temáticas</h5>
-											<div class="tm_pb_toggle_content clearfix"
-												style="display: block;">
-												<p>#{usuario.usuarioRegistrado.tematica}</p>
-											</div>
-										</div>
-										<div
-											class="tm_pb_module tm_pb_toggle  tm_pb_accordion_item_1 tm_pb_toggle_open">
-											<h5>Soportes</h5>
-											<div class="tm_pb_toggle_content clearfix"
-												style="display: block;">
-												<ui:repeat value="#{soportes}" var="soporte">
-													<p>
-														<a href="#{soporte.soporte}">#{soporte.soporte}</a>
-													</p>
-												</ui:repeat>
-											</div>
-										</div>
-										<form class="tm_pb_contact_form clearfix" method="post"
-											action="users" id="form-form">
-											<div class="tm-pb-contact-message"></div>
-											<div class="row">
-												<div
-													class="tm_pb_contact_field col-md-12  tm_pb_contact_field_3">
-													<textarea name="form-observation"
-														placeholder="Observaciones..." class="form-control"
-														id="form-observation"></textarea>
+										<c:if test="#{not empty usuario.usuarioRegistrado}">
+											<div
+												class="tm_pb_module tm_pb_toggle  tm_pb_accordion_item_1 tm_pb_toggle_open">
+												<h5>Área Profesional</h5>
+												<div class="tm_pb_toggle_content clearfix"
+													style="display: block;">
+													<p>#{usuario.usuarioRegistrado.area.area}</p>
 												</div>
-											</div><br />
-											<div class="tm_contact_bottom_container">
-												<input type="button" value="Aceptar" class="btn btn-success" onclick="aprobar('aceptar')" />
-												<input type="button" value="Devolver" class="btn btn-warning" onclick="aprobar('devolver')" />
-												<input type="button" value="Rechazar" class="btn btn-danger" onclick="aprobar('rechazar')" />
 											</div>
-											<input type="hidden" name="form-user" value="#{usuario.idMD5}" />
-											<input type="hidden" name="form-action" id="form-accion" />
-										</form>
+											<div
+												class="tm_pb_module tm_pb_toggle  tm_pb_accordion_item_1 tm_pb_toggle_open">
+												<h5>Perfil Profesional</h5>
+												<div class="tm_pb_toggle_content clearfix"
+													style="display: block;">
+													<p>#{usuario.usuarioRegistrado.perfil}</p>
+												</div>
+											</div>
+											<c:if test="#{not empty usuario.usuarioRegistrado.tematica}">
+												<div
+													class="tm_pb_module tm_pb_toggle  tm_pb_accordion_item_1 tm_pb_toggle_open">
+													<h5>Temáticas</h5>
+													<div class="tm_pb_toggle_content clearfix"
+														style="display: block;">
+														<p>#{usuario.usuarioRegistrado.tematica}</p>
+													</div>
+												</div>
+												<div
+													class="tm_pb_module tm_pb_toggle  tm_pb_accordion_item_1 tm_pb_toggle_open">
+													<h5>Soportes</h5>
+													<div class="tm_pb_toggle_content clearfix"
+														style="display: block;">
+														<ui:repeat value="#{soportes}" var="soporte">
+															<p>
+																<a href="descargar?archivo=#{soporte.soporte}">#{soporte.soporte}</a>
+															</p>
+														</ui:repeat>
+													</div>
+												</div>
+											</c:if>
+											<div
+												class="tm_pb_module tm_pb_toggle  tm_pb_accordion_item_1 tm_pb_toggle_open">
+												<h5>Estado Registro</h5>
+												<div class="tm_pb_toggle_content clearfix"
+													style="display: block;">
+													<p>#{usuario.usuarioRegistrado.estado.estado}</p>
+												</div>
+											</div>
+											<div
+												class="tm_pb_module tm_pb_toggle  tm_pb_accordion_item_1 tm_pb_toggle_open">
+												<form class="tm_pb_contact_form clearfix" method="post"
+													action="users" id="form-form">
+													<h5>Observación</h5>
+													<div class="row">
+														<textarea name="form-observation"
+															placeholder="Observaciones..." class="form-control"
+															id="form-observation">#{usuario.usuarioRegistrado.observacion}</textarea>
+													</div>
+													<br />
+													<div class="tm_contact_bottom_container">
+														<c:if
+															test="#{rol[0] == 'ROLE_ROOT' or rol[0] == 'ROLE_VALIDADOR' or rol[0] == 'ROLE_COMITE'}">
+															<input type="button" value="Aceptar"
+																class="btn btn-success" onclick="aprobar('aceptar')" />
+															<input type="button" value="Devolver"
+																class="btn btn-warning" onclick="aprobar('devolver')" />
+															<input type="button" value="Rechazar"
+																class="btn btn-danger" onclick="aprobar('rechazar')" />
+														</c:if>
+														<c:if test="#{rol[0] == 'ROLE_ROOT' or rol[0] == 'ROLE_ADMINISTRADOR'}">
+															<input type="button" value="Aprobar"
+																class="btn btn-success" onclick="aprobar('aprobar')" />
+														</c:if>
+													</div>
+													<input type="hidden" name="form-user"
+														value="#{usuario.idMD5}" /> <input type="hidden"
+														name="form-action" id="form-accion" />
+												</form>
+											</div>
+										</c:if>
 									</div>
 								</div>
-
 							</div>
 						</div>
 					</div>

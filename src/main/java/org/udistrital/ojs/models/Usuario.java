@@ -31,7 +31,7 @@ public class Usuario {
 		this.rol = rol;
 		this.nombre = nombre;
 		this.correo = correo;
-		this.estado = true;
+		this.estado = false;
 	}
 	
 	@Id
@@ -68,7 +68,7 @@ public class Usuario {
 		return contrasena;
 	}
 	
-	@Column(name = "estado", nullable = false)
+	@Column(name = "Estado", nullable = false)
 	public boolean isEstado() {
 		return estado;
 	}

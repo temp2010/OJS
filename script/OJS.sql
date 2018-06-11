@@ -128,7 +128,7 @@ CREATE TABLE [dbo].[Usuarios](
 ) ON [PRIMARY]
 GO
 
-ALTER TABLE [dbo].[Usuarios] ADD  CONSTRAINT [DF_Usuarios_Estado]  DEFAULT ((1)) FOR [Estado]
+ALTER TABLE [dbo].[Usuarios] ADD  CONSTRAINT [DF_Usuarios_Estado]  DEFAULT ((0)) FOR [Estado]
 GO
 
 ALTER TABLE [dbo].[Usuarios]  WITH CHECK ADD  CONSTRAINT [FK_Usuarios_Roles] FOREIGN KEY([idRol])
@@ -138,17 +138,17 @@ GO
 ALTER TABLE [dbo].[Usuarios] CHECK CONSTRAINT [FK_Usuarios_Roles]
 GO
 
-INSERT INTO [dbo].[Usuarios] ([idRol], [Nombre], [Correo],[Contrasena])
-     VALUES (1, 'Root', 'root@ojs.co', '40bd001563085fc35165329ea1ff5c5ecbdbbeef')
+INSERT INTO [dbo].[Usuarios] ([idRol], [Nombre], [Correo], [Contrasena], [Estado])
+     VALUES (1, 'Root', 'root@ojs.co', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 1)
 GO
-INSERT INTO [dbo].[Usuarios] ([idRol], [Nombre], [Correo],[Contrasena])
-     VALUES (2, 'Administrador', 'admin@ojs.co', '40bd001563085fc35165329ea1ff5c5ecbdbbeef')
+INSERT INTO [dbo].[Usuarios] ([idRol], [Nombre], [Correo], [Contrasena], [Estado])
+     VALUES (2, 'Administrador', 'admin@ojs.co', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 1)
 GO
-INSERT INTO [dbo].[Usuarios] ([idRol], [Nombre], [Correo],[Contrasena])
-     VALUES (3, 'Validador', 'valid@ojs.co', '40bd001563085fc35165329ea1ff5c5ecbdbbeef')
+INSERT INTO [dbo].[Usuarios] ([idRol], [Nombre], [Correo], [Contrasena], [Estado])
+     VALUES (3, 'Validador', 'valid@ojs.co', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 1)
 GO
-INSERT INTO [dbo].[Usuarios] ([idRol], [Nombre], [Correo],[Contrasena])
-     VALUES (4, 'Comité', 'comite@ojs.co', '40bd001563085fc35165329ea1ff5c5ecbdbbeef')
+INSERT INTO [dbo].[Usuarios] ([idRol], [Nombre], [Correo], [Contrasena], [Estado])
+     VALUES (4, 'Comité', 'comite@ojs.co', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 1)
 GO
 
 --UsuariosRegistrados
