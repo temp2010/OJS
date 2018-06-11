@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,6 +36,8 @@ public class UsuarioController {
 		accionGlobal = accion;
 		ModelAndView model = new ModelAndView();
 		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		model.addObject("rol", auth.getAuthorities());
 		model.addObject("usuarios", listaUsuarios());
 
 		return model;
@@ -48,6 +52,8 @@ public class UsuarioController {
 		Estado estado = eC.obtenerEstado(usuarioAprobar.getUsuarioRegistrado(), request.get("form-action"));
 		usuarioAprobar.getUsuarioRegistrado().setEstado(estado);
 		usuarioService.crear(usuarioAprobar.getUsuarioRegistrado());
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		model.addObject("rol", auth.getAuthorities());
 		model.addObject("usuarios", listaUsuarios());
 		
 		return model;
@@ -59,6 +65,8 @@ public class UsuarioController {
 		ModelAndView model = new ModelAndView();
 		Usuario usuarioAprobar = usuarioService.buscar(id);
 		List<Soporte> soportes = new ArrayList<>(usuarioAprobar.getUsuarioRegistrado().getSoportes());
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		model.addObject("rol", auth.getAuthorities());
 		model.addObject("usuario", usuarioAprobar);
 		model.addObject("soportes", soportes);
 		

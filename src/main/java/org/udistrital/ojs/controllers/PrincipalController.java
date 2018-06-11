@@ -2,11 +2,14 @@ package org.udistrital.ojs.controllers;
 
 import java.io.File;
 import java.io.IOException;
+import java.security.Principal;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -99,7 +102,14 @@ public class PrincipalController {
 	}
 
 	@RequestMapping(value = "/pages/index")
-	public void principal() {
+	public ModelAndView principal() {
+		
+		ModelAndView model = new ModelAndView();
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		model.addObject("rol", auth.getAuthorities());
+		
+		return model;
 	}
 
 	private void guardarArchivo(MultipartFile archivo) throws IOException {

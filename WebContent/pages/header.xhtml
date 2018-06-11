@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <ui:composition>
 	<header id="masthead" class="site-header style-5 transparent container"
@@ -26,13 +27,18 @@
 					<nav id="site-navigation" class="main-navigation animate"
 						role="navigation">
 						<ul id="main-menu" class="menu stuckMenu"
-							style="position: relative; top: 0px; transform: translateX(0px);">
+							style="position: relative; top: 0px; transform: translateX(0px);">							
+							<c:if test="#{rol[0] == 'ROLE_ROOT' or rol[0] == 'ROL_VALIDADOR'}">
 							<li id="menu-item-1235"
 								class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1235"><a
 								href="users?accion=validar">Solicitudes</a></li>
+							</c:if>
+							<c:if test="#{rol[0] == 'ROLE_ROOT' or rol[0] == 'ROL_COMITE'}">
 							<li id="menu-item-1237"
 								class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1237"><a
 								href="users?accion=comite">Comité</a></li>
+							</c:if>
+							<c:if test="#{rol[0] == 'ROLE_ROOT' or rol[0] == 'ROLE_ADMINISTRADOR'}">
 							<li id="menu-item-1239"
 								class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1239"><a
 								href="reporte">Reportes</a></li>
@@ -50,6 +56,7 @@
 										class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1388"><a
 										href="users?accion">Usuarios</a></li>
 								</ul></li>
+							</c:if>
 							<li id="menu-item-1239"
 								class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1239"><a
 								href="../logout">Salir</a></li>

@@ -12,7 +12,17 @@
 		<intercept-url pattern="login" access="permitAll" />
 		<intercept-url pattern="register" access="permitAll" />
 		<intercept-url pattern="/pages/index"
-			access="hasRole('ROLE_ROOT')" />
+			access="hasAnyRole('ROLE_ROOT', 'ROLE_ADMINISTRADOR', 'ROL_VALIDADOR', 'ROL_COMITE')" />
+		<intercept-url pattern="/pages/area"
+			access="hasAnyRole('ROLE_ROOT', 'ROLE_ADMINISTRADOR')" />
+		<intercept-url pattern="/pages/formulario"
+			access="hasAnyRole('ROLE_ROOT', 'ROL_VALIDADOR', 'ROL_COMITE')" />
+		<intercept-url pattern="/pages/reporte"
+			access="hasAnyRole('ROLE_ROOT', 'ROLE_ADMINISTRADOR')" />
+		<intercept-url pattern="/pages/roles"
+			access="hasAnyRole('ROLE_ROOT', 'ROLE_ADMINISTRADOR')" />
+		<intercept-url pattern="/pages/users"
+			access="hasAnyRole('ROLE_ROOT', 'ROL_VALIDADOR', 'ROL_COMITE')" />
 		<form-login login-page="/login"
 			login-processing-url="/loginValidate"
 			default-target-url="/pages/index"
