@@ -62,10 +62,12 @@ public class UsuarioDaoImpl implements UsuarioDao {
 		List<Usuario> usuario = sessionFactory.getCurrentSession().createQuery("FROM Usuario WHERE Correo = ?")
 				.setParameter(0, correo).list();
 		
-		if (!usuario.isEmpty())
+		if (!usuario.isEmpty()) {
 			return usuario.get(0);
-		else
+		}
+		else {
 			return null;
+		}
 	}
 
 	@Override

@@ -27,6 +27,13 @@ import org.udistrital.ojs.services.RolService;
 import org.udistrital.ojs.services.SoporteService;
 import org.udistrital.ojs.services.UsuarioService;
 
+/**
+ * PrincipalController: Atiende las peticiones realizadas antes del ingreso de un usuario
+ *
+ * @author José Daniel Peña
+ * @author Cristian Nariño
+ * @version 1.0
+ */
 @Controller
 public class PrincipalController {
 
@@ -48,21 +55,34 @@ public class PrincipalController {
 	@Autowired
 	public JavaMailSender emailSender;
 
+	/**
+	 * Escucha la peticion inicial de ingreso al OJS
+	 */
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public void index() {
+		System.out.println("a");
 	}
 
+	/**
+	 * Escucha las peticiones de envio del formulario de registro de usuario
+	 * 
+	 * @param soporteArchivos: Listado de archivos de soportes
+	 * @param request: Datos del registro
+	 * @return model: Objeto con los datos para la vista
+	 */
 	@RequestMapping(value = "/index", method = RequestMethod.POST)
 	public ModelAndView guardarRegistro(@RequestParam("form-support") MultipartFile[] soporteArchivos,
 			@RequestParam Map<String, String> request) throws IOException {
 
 		ModelAndView model = new ModelAndView();
 		EstadoController eC = new EstadoController();
+		Usuario registrado;
 
 		Usuario usuario = usuarioService.validar(request.get("form-mail"));
 		if (usuario == null) {
 			Rol rol = rolService.Buscar(Integer.parseInt(request.get("form-profile")));
-			Usuario registrado = new Usuario(rol, request.get("form-name"), request.get("form-mail"));
+			registrado = new Usuario(rol, request.get("form-name"), request.get("form-mail"));
+			// Guarda el usuario
 			usuarioService.crear(registrado);
 			UsuarioRegistrado usuarioRegistrado = new UsuarioRegistrado(registrado.getId(),
 					eC.obtenerEstado(new UsuarioRegistrado(), ""),
@@ -72,30 +92,38 @@ public class PrincipalController {
 			} else {
 				usuarioRegistrado.setTematica(request.get("form-thematics"));
 				usuarioService.crear(usuarioRegistrado);
+				// Guarda cada uno de los soportes
 				for (MultipartFile archivo : soporteArchivos) {
 					guardarArchivo(archivo);
 					Soporte soporte = new Soporte(registrado.getId(), archivo.getOriginalFilename());
 					soporteService.crear(soporte);
 				}
 			}
+			// Guarda los datos adicionales del registro
 			registrado.setUsuarioRegistrado(usuarioRegistrado);
-			uC.enviarNotificacion(registrado, emailSender);
+			// Envia la notificacion
 			model.addObject("success", "Usuario registrado correctamente!");
 		} else {
+			registrado = new Usuario();
 			model.addObject("error", "El usuario ya existe!");
 		}
-
+		uC.enviarNotificacion(registrado, emailSender);
+		
 		return model;
 	}
 
+	/**
+	 * Escucha las peticiones para mostrar la pantalla de ingreso
+	 */
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public void login() {
 	}
 
-	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public void logout() {
-	}
-
+	/**
+	 * Escucha las peticiones para mostrar la pantalla de Registro
+	 * @param request: parametros para validar creacion/edición de un registro
+	 * @return model: Objeto con los datos para la vista
+	 */
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public ModelAndView register(@RequestParam Map<String, String> request) {
 
@@ -106,13 +134,19 @@ public class PrincipalController {
 		if(request.get("usuario") != null) {
 			usuarioAprobar = usuarioService.buscar(request.get("usuario"));
 		}
+		// Cargar listado de areas profesionales
 		model.addObject("areas", areaService.listar());
+		// Cargar listado Perfiles publicos
 		model.addObject("roles", rolService.listarPublico());
 		model.addObject("usuario", usuarioAprobar);
 
 		return model;
 	}
 
+	/**
+	 * Escucha las peticiones para mostrar la pantalla principal
+	 * @return model: Objeto con los datos para la vista
+	 */
 	@RequestMapping(value = "/pages/index")
 	public ModelAndView principal() {
 
@@ -124,6 +158,11 @@ public class PrincipalController {
 		return model;
 	}
 	
+	/**
+	 * Escucha las peticiones para descarga de archivos
+	 * @param archivo: Nombre del archivo para descargar
+	 * @param response: variable de respuesta para colocar la cabezeras de la petición
+	 */
 	@RequestMapping(value = "/pages/descargar", method = RequestMethod.GET)
 	public void descargar(@RequestParam("archivo") String archivo, HttpServletResponse response) throws IOException {
 		response.setContentType("text/html");
@@ -139,6 +178,10 @@ public class PrincipalController {
 		out.close();
 	}
 
+	/**
+	 * Funcion que guarda los archivos (soportes) en una carpeta del sistema
+	 * @param archivo: Objeto archivo para guardar
+	 */
 	private void guardarArchivo(MultipartFile archivo) throws IOException {
 		File destinoArchivo = new File(CARPETA + archivo.getOriginalFilename());
 		archivo.transferTo(destinoArchivo);

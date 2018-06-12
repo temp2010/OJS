@@ -27,6 +27,7 @@ public class RolController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		model.addObject("rol", auth.getAuthorities());
 		model.addObject("roles", roles);
+		
 		return model;
 	}
 }

@@ -20,11 +20,14 @@ public class AreaController {
 
 	@RequestMapping(value = "/pages/areas", method = RequestMethod.GET)
 	public ModelAndView listar() {
+		
 		ModelAndView model = new ModelAndView();
+		
 		List<Area> areas = areaService.listar();
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		model.addObject("rol", auth.getAuthorities());
 		model.addObject("areas", areas);
+		
 		return model;
 	}
 }

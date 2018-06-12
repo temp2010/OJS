@@ -94,21 +94,21 @@ public class UsuarioController {
 		List<Usuario> usuarios;
 
 		switch (accionGlobal) {
-		case "validar":
-			usuarios = usuarioService.listar(estadoService.buscar(2));
-			break;
-			
-		case "comite":
-			usuarios = usuarioService.listar(estadoService.buscar(3));
-			break;
-						
-		case "aprobar":
-			usuarios = usuarioService.listar(estadoService.buscar(4));
-			break;
-			
-		default:
-			usuarios = usuarioService.listar();
-			break;
+			case "validar":
+				usuarios = usuarioService.listar(estadoService.buscar(2));
+				break;
+				
+			case "comite":
+				usuarios = usuarioService.listar(estadoService.buscar(3));
+				break;
+							
+			case "aprobar":
+				usuarios = usuarioService.listar(estadoService.buscar(4));
+				break;
+				
+			default:
+				usuarios = usuarioService.listar();
+				break;
 		}
 		
 		return usuarios;
