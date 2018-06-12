@@ -63,7 +63,7 @@
 		<url-pattern>*.jsf</url-pattern>
 	</servlet-mapping>
 
-	<!-- Log4j
+	<!-- Log4j -->
 	<context-param>
 		<param-name>log4jConfigLocation</param-name>
 		<param-value>/WEB-INF/log4j.properties</param-value>
@@ -72,6 +72,5 @@
 	<listener>
 		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
 	</listener>
-	-->
-
+	
 </web-app>

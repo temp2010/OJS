@@ -60,7 +60,6 @@ public class PrincipalController {
 	 */
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public void index() {
-		System.out.println("a");
 	}
 
 	/**
