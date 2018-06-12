@@ -16,4 +16,9 @@ public class SoporteDaoImpl implements SoporteDao {
 		sessionFactory.getCurrentSession().saveOrUpdate(soporte);
 	}
 
+	@Override
+	public void borrar(Integer idUsuario) {
+		sessionFactory.getCurrentSession().createQuery("DELETE FROM Soporte WHERE idUsuario = ?").setParameter(0, idUsuario).executeUpdate();
+	}
+
 }

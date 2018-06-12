@@ -21,6 +21,7 @@ public class UsuarioRegistrado {
 	private String perfil;
 	private String tematica;
 	private String observacion;
+	private Integer devoluciones;
 	private Set<Soporte> soportes;
 	
 	public UsuarioRegistrado() {
@@ -31,6 +32,7 @@ public class UsuarioRegistrado {
 		this.estado = estado;
 		this.area = area;
 		this.perfil = perfil;
+		this.devoluciones = 0;
 	}
 	
 	public UsuarioRegistrado(Integer usuario, Estado estado, Area area, String perfil, String tematica) {
@@ -39,6 +41,7 @@ public class UsuarioRegistrado {
 		this.area = area;
 		this.perfil = perfil;
 		this.tematica = tematica;
+		this.devoluciones = 0;
 	}
 	
 	@Id
@@ -80,6 +83,11 @@ public class UsuarioRegistrado {
 		return observacion;
 	}
 	
+	@Column(name = "Devoluciones", nullable = true)
+	public Integer getDevoluciones() {
+		return devoluciones;
+	}
+	
 	public void setUsuario(Integer usuario) {
 		this.usuario = usuario;
 	}
@@ -106,6 +114,10 @@ public class UsuarioRegistrado {
 	
 	public void setObservacion(String observacion) {
 		this.observacion = observacion;
+	}
+	
+	public void setDevoluciones(Integer devoluciones) {
+		this.devoluciones = devoluciones;
 	}
 	
 }

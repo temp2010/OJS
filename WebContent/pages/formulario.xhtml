@@ -97,6 +97,7 @@
 												class="tm_pb_module tm_pb_toggle  tm_pb_accordion_item_1 tm_pb_toggle_open">
 												<form class="tm_pb_contact_form clearfix" method="post"
 													action="users" id="form-form">
+													<c:if test="#{rol[0] == 'ROLE_VALIDADOR' or rol[0] == 'ROLE_COMITE'}">
 													<h5>Observación</h5>
 													<div class="row">
 														<textarea name="form-observation"
@@ -104,19 +105,24 @@
 															id="form-observation">#{usuario.usuarioRegistrado.observacion}</textarea>
 													</div>
 													<br />
+													</c:if>
 													<div class="tm_contact_bottom_container">
 														<c:if
 															test="#{rol[0] == 'ROLE_ROOT' or rol[0] == 'ROLE_VALIDADOR' or rol[0] == 'ROLE_COMITE'}">
 															<input type="button" value="Aceptar"
 																class="btn btn-success" onclick="aprobar('aceptar')" />
-															<input type="button" value="Devolver"
-																class="btn btn-warning" onclick="aprobar('devolver')" />
+															<c:if
+																test="#{usuario.usuarioRegistrado.devoluciones lt 3}">
+																<input type="button" value="Devolver"
+																	class="btn btn-warning" onclick="aprobar('devolver')" />
+															</c:if>
 															<input type="button" value="Rechazar"
 																class="btn btn-danger" onclick="aprobar('rechazar')" />
 														</c:if>
-														<c:if test="#{rol[0] == 'ROLE_ROOT' or rol[0] == 'ROLE_ADMINISTRADOR'}">
-															<input type="button" value="Aprobar"
-																class="btn btn-success" onclick="aprobar('aprobar')" />
+														<c:if
+															test="#{not usuario.estado and usuario.usuarioRegistrado.estado.id == 4 and (rol[0] == 'ROLE_ROOT' or rol[0] == 'ROLE_ADMINISTRADOR')}">
+															<input type="button" value="Activar"
+																class="btn btn-success" onclick="aprobar('activar')" />
 														</c:if>
 													</div>
 													<input type="hidden" name="form-user"

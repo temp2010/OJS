@@ -9,6 +9,7 @@ Configuration DTD 3.0//EN"
 		<property name="show_sql">true</property>
 		<mapping class="org.udistrital.ojs.models.Area" />
 		<mapping class="org.udistrital.ojs.models.Estado" />
+		<mapping class="org.udistrital.ojs.models.Reporte" />
 		<mapping class="org.udistrital.ojs.models.Rol" />
 		<mapping class="org.udistrital.ojs.models.Soporte" />
 		<mapping class="org.udistrital.ojs.models.Usuario" />

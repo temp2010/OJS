@@ -10,6 +10,7 @@ import javax.persistence.Table;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "Usuarios")
@@ -68,7 +69,7 @@ public class Usuario {
 		return contrasena;
 	}
 	
-	@Column(name = "Estado", nullable = false)
+	@Column(name = "uEstado", nullable = false)
 	public boolean isEstado() {
 		return estado;
 	}

@@ -18,4 +18,9 @@ public class SoporteServiceImpl implements SoporteService {
 		soporteDao.crear(soporte);
 	}
 
+	@Override
+	public void borrar(Integer idUsuario) {
+		soporteDao.borrar(idUsuario);
+	}
+
 }

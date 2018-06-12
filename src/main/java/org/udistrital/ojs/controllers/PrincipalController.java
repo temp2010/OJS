@@ -79,8 +79,8 @@ public class PrincipalController {
 		Usuario registrado;
 
 		Usuario usuario = usuarioService.validar(request.get("form-mail"));
-		if (usuario == null) {
-			Rol rol = rolService.Buscar(Integer.parseInt(request.get("form-profile")));
+		Rol rol = rolService.Buscar(Integer.parseInt(request.get("form-profile")));
+		if (usuario == null) {	
 			registrado = new Usuario(rol, request.get("form-name"), request.get("form-mail"));
 			// Guarda el usuario
 			usuarioService.crear(registrado);
@@ -101,12 +101,33 @@ public class PrincipalController {
 			}
 			// Guarda los datos adicionales del registro
 			registrado.setUsuarioRegistrado(usuarioRegistrado);
-			// Envia la notificacion
 			model.addObject("success", "Usuario registrado correctamente!");
 		} else {
-			registrado = new Usuario();
-			model.addObject("error", "El usuario ya existe!");
+			usuario.setRol(rol);
+			usuario.setNombre(request.get("form-name"));
+			usuario.setCorreo(request.get("form-mail"));
+			// Actualizar los datos del usuario
+			usuarioService.crear(usuario);
+			usuario.getUsuarioRegistrado().setEstado(eC.obtenerEstado(new UsuarioRegistrado(), ""));
+			usuario.getUsuarioRegistrado().setArea(areaService.buscar(Integer.parseInt(request.get("form-area"))));
+			usuario.getUsuarioRegistrado().setPerfil(request.get("form-professional"));
+			if (soporteArchivos.length == 0) {
+				usuarioService.crear(usuario.getUsuarioRegistrado());
+			} else {
+				usuario.getUsuarioRegistrado().setTematica(request.get("form-thematics"));
+				usuarioService.crear(usuario.getUsuarioRegistrado());
+				soporteService.borrar(usuario.getId());
+				// Guarda cada uno de los soportes
+				for (MultipartFile archivo : soporteArchivos) {
+					guardarArchivo(archivo);
+					Soporte soporte = new Soporte(usuario.getId(), archivo.getOriginalFilename());
+					soporteService.crear(soporte);
+				}
+			}
+			registrado = usuario;
+			model.addObject("success", "Usuario actualizado correctamente!");
 		}
+		// Envia la notificacion
 		uC.enviarNotificacion(registrado, emailSender);
 		
 		return model;

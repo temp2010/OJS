@@ -6,4 +6,6 @@ public interface SoporteService {
 
 	public void crear(Soporte soporte);
 	
+	public void borrar(Integer idUsuario);
+	
 }

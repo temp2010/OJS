@@ -116,7 +116,7 @@ CREATE TABLE [dbo].[Usuarios](
 	[Nombre] [varchar](50) NOT NULL,
 	[Correo] [varchar](50) NOT NULL,
 	[Contrasena] [varchar](50) NULL,
-	[Estado] [bit] NOT NULL,
+	[uEstado] [bit] NOT NULL,
  CONSTRAINT [PK_Usuarios] PRIMARY KEY CLUSTERED 
 (
 	[idUsuario] ASC
@@ -128,7 +128,7 @@ CREATE TABLE [dbo].[Usuarios](
 ) ON [PRIMARY]
 GO
 
-ALTER TABLE [dbo].[Usuarios] ADD  CONSTRAINT [DF_Usuarios_Estado]  DEFAULT ((0)) FOR [Estado]
+ALTER TABLE [dbo].[Usuarios] ADD  CONSTRAINT [DF_Usuarios_uEstado]  DEFAULT ((0)) FOR [uEstado]
 GO
 
 ALTER TABLE [dbo].[Usuarios]  WITH CHECK ADD  CONSTRAINT [FK_Usuarios_Roles] FOREIGN KEY([idRol])
@@ -138,16 +138,16 @@ GO
 ALTER TABLE [dbo].[Usuarios] CHECK CONSTRAINT [FK_Usuarios_Roles]
 GO
 
-INSERT INTO [dbo].[Usuarios] ([idRol], [Nombre], [Correo], [Contrasena], [Estado])
+INSERT INTO [dbo].[Usuarios] ([idRol], [Nombre], [Correo], [Contrasena], [uEstado])
      VALUES (1, 'Root', 'root@ojs.co', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 1)
 GO
-INSERT INTO [dbo].[Usuarios] ([idRol], [Nombre], [Correo], [Contrasena], [Estado])
+INSERT INTO [dbo].[Usuarios] ([idRol], [Nombre], [Correo], [Contrasena], [uEstado])
      VALUES (2, 'Administrador', 'admin@ojs.co', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 1)
 GO
-INSERT INTO [dbo].[Usuarios] ([idRol], [Nombre], [Correo], [Contrasena], [Estado])
+INSERT INTO [dbo].[Usuarios] ([idRol], [Nombre], [Correo], [Contrasena], [uEstado])
      VALUES (3, 'Validador', 'valid@ojs.co', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 1)
 GO
-INSERT INTO [dbo].[Usuarios] ([idRol], [Nombre], [Correo], [Contrasena], [Estado])
+INSERT INTO [dbo].[Usuarios] ([idRol], [Nombre], [Correo], [Contrasena], [uEstado])
      VALUES (4, 'Comité', 'comite@ojs.co', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 1)
 GO
 
@@ -169,6 +169,7 @@ CREATE TABLE [dbo].[UsuariosRegistrados](
 	[Perfil] [text] NULL,
 	[Tematicas] [text] NULL,
 	[Observacion] [text] NULL,
+	[Devoluciones] [smallint] NOT NULL,
  CONSTRAINT [PK_UsuariosRegistrados] PRIMARY KEY CLUSTERED 
 (
 	[idUsuario] ASC
@@ -177,6 +178,9 @@ CREATE TABLE [dbo].[UsuariosRegistrados](
 GO
 
 ALTER TABLE [dbo].[UsuariosRegistrados] ADD  CONSTRAINT [DF_UsuariosRegistrados_FechaRegistro]  DEFAULT (getdate()) FOR [FechaRegistro]
+GO
+
+ALTER TABLE [dbo].[UsuariosRegistrados] ADD  CONSTRAINT [DF_UsuariosRegistrados_Devoluciones]  DEFAULT ((0)) FOR [Devoluciones]
 GO
 
 ALTER TABLE [dbo].[UsuariosRegistrados]  WITH CHECK ADD  CONSTRAINT [FK_UsuariosRegistrados_Estados] FOREIGN KEY([idEstado])
@@ -226,4 +230,24 @@ REFERENCES [dbo].[UsuariosRegistrados] ([idUsuario])
 GO
 
 ALTER TABLE [dbo].[Soportes] CHECK CONSTRAINT [FK_Soportes_UsuariosRegistrados]
+GO
+
+--Reporte
+USE [ojs]
+GO
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE VIEW [dbo].[Reporte]
+AS
+SELECT        ABS(checksum(NEWID()) % 10000) AS id, dbo.Roles.Rol, dbo.Estados.Estado, COUNT(*) AS Cantidad
+FROM            dbo.Usuarios INNER JOIN
+                         dbo.Roles ON dbo.Usuarios.idRol = dbo.Roles.idRol INNER JOIN
+                         dbo.UsuariosRegistrados ON dbo.Usuarios.idUsuario = dbo.UsuariosRegistrados.idUsuario INNER JOIN
+                         dbo.Estados ON dbo.UsuariosRegistrados.idEstado = dbo.Estados.idEstado
+GROUP BY dbo.Roles.Rol, dbo.Estados.Estado
 GO

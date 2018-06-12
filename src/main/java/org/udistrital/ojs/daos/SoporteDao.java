@@ -5,5 +5,7 @@ import org.udistrital.ojs.models.Soporte;
 public interface SoporteDao {
 	
 	public void crear(Soporte soporte);
+	
+	public void borrar(Integer idUsuario);
 
 }

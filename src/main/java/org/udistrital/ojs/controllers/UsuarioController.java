@@ -58,10 +58,20 @@ public class UsuarioController {
 
 		Estado estado = eC.obtenerEstado(usuarioAprobar.getUsuarioRegistrado(), request.get("form-action"));
 		usuarioAprobar.getUsuarioRegistrado().setEstado(estado);
+		// Aumentar en 1 el contador de devoluciones
+		if(estado.getId() == 1) {
+			usuarioAprobar.getUsuarioRegistrado().setDevoluciones(usuarioAprobar.getUsuarioRegistrado().getDevoluciones() + 1);
+		}
 		if(request.get("form-observation") != "") {
 			usuarioAprobar.getUsuarioRegistrado().setObservacion(request.get("form-observation"));
 		}
-		usuarioService.crear(usuarioAprobar.getUsuarioRegistrado());
+		// Activar el usuario
+		if(request.get("form-action").equals("activar")) {
+			usuarioAprobar.setEstado(true);
+			usuarioService.crear(usuarioAprobar);
+		} else {
+			usuarioService.crear(usuarioAprobar.getUsuarioRegistrado());
+		}
 		enviarNotificacion(usuarioAprobar, null);
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		model.addObject("rol", auth.getAuthorities());
@@ -143,16 +153,21 @@ public class UsuarioController {
 				message.setTo(usuario.getCorreo());
 				message.setText("Usuario rechazado!");
 			break;
+			
+			case 6:
+				message.setTo(usuario.getCorreo());
+				message.setText("Usuario Aprobado, Bienvenido!");
+			break;
 
 			default:
 			break;
 		}
 		
 		if(message.getText() != null && emailSender != null) {
-			emailSender.send(message);
+			//emailSender.send(message);
 		}
 		if(message.getText() != null && emailSender == null) {
-			this.emailSender.send(message);
+			//this.emailSender.send(message);
 		}
 	}
 

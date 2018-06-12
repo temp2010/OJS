@@ -10,6 +10,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.udistrital.ojs.models.Estado;
+import org.udistrital.ojs.models.Reporte;
 import org.udistrital.ojs.models.Usuario;
 import org.udistrital.ojs.models.UsuarioRegistrado;
 
@@ -34,7 +35,8 @@ public class UsuarioDaoImpl implements UsuarioDao {
 		}
 		if (!uId.isEmpty()) {
 			return (List<Usuario>) sessionFactory.getCurrentSession()
-					.createQuery("FROM Usuario WHERE idUsuario IN (" + String.join(",", uId) + ")").list();
+					.createQuery("FROM Usuario WHERE idUsuario IN (" + String.join(",", uId) + ") AND uEstado = 0")
+					.list();
 		}
 
 		return Collections.emptyList();
@@ -61,11 +63,10 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	public Usuario validar(String correo) {
 		List<Usuario> usuario = sessionFactory.getCurrentSession().createQuery("FROM Usuario WHERE Correo = ?")
 				.setParameter(0, correo).list();
-		
+
 		if (!usuario.isEmpty()) {
 			return usuario.get(0);
-		}
-		else {
+		} else {
 			return null;
 		}
 	}
@@ -73,40 +74,24 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	@Override
 	public List<List<Map<Object, Object>>> datos() {
 
+		List<Reporte> reporte = sessionFactory.getCurrentSession().createQuery("FROM Reporte").list();
+
 		Map<Object, Object> map = null;
 		List<List<Map<Object, Object>>> list = new ArrayList<>();
 		List<Map<Object, Object>> dataPoints1 = new ArrayList<>();
 		List<Map<Object, Object>> dataPoints2 = new ArrayList<>();
 
-		map = new HashMap<>();
-		map.put("x", "Aceptadas");
-		map.put("y", 13);
-		dataPoints1.add(map);
 
-		map = new HashMap<>();
-		map.put("x", "Devueltas");
-		map.put("y", 35);
-		dataPoints1.add(map);
-
-		map = new HashMap<>();
-		map.put("x", "Rechazadas");
-		map.put("y", 15);
-		dataPoints1.add(map);
-
-		map = new HashMap<>();
-		map.put("x", "Aceptadas");
-		map.put("y", 29);
-		dataPoints2.add(map);
-
-		map = new HashMap<>();
-		map.put("x", "Devueltas");
-		map.put("y", 25);
-		dataPoints2.add(map);
-
-		map = new HashMap<>();
-		map.put("x", "Rechazadas");
-		map.put("y", 27);
-		dataPoints2.add(map);
+		for(Reporte columna : reporte) {
+			map = new HashMap<>();
+			map.put("x", columna.getEstado());
+			map.put("y", columna.getCantidad());
+			if(columna.getRol().equals("ESCRITOR")) {
+				dataPoints1.add(map);
+			} else {
+				dataPoints2.add(map);
+			}
+		}
 
 		list.add(dataPoints1);
 		list.add(dataPoints2);

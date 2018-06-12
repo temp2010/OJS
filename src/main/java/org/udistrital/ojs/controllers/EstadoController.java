@@ -24,6 +24,10 @@ public class EstadoController {
 				estado.setId(5);
 				break;
 				
+			case "activar":
+				estado.setId(6);
+				break;
+				
 			default:
 				estado.setId(2);
 				break;
