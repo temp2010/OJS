@@ -1,5 +1,7 @@
 package org.udistrital.ojs.models;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -18,11 +20,13 @@ public class UsuarioRegistrado {
 	private Integer usuario;
 	private Estado estado;
 	private Area area;
+	private Date fecha;
 	private String perfil;
 	private String tematica;
 	private String observacion;
 	private Integer devoluciones;
 	private Set<Soporte> soportes;
+	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 	
 	public UsuarioRegistrado() {
 	}
@@ -31,6 +35,7 @@ public class UsuarioRegistrado {
 		this.usuario = usuario;
 		this.estado = estado;
 		this.area = area;
+		this.fecha = new Date();
 		this.perfil = perfil;
 		this.devoluciones = 0;
 	}
@@ -39,6 +44,7 @@ public class UsuarioRegistrado {
 		this.usuario = usuario;
 		this.estado = estado;
 		this.area = area;
+		this.fecha = new Date();
 		this.perfil = perfil;
 		this.tematica = tematica;
 		this.devoluciones = 0;
@@ -60,6 +66,11 @@ public class UsuarioRegistrado {
 	@JoinColumn(name = "idArea")
 	public Area getArea() {
 		return area;
+	}
+	
+	@Column(name = "FechaRegistro", nullable = false)
+	public Date getFecha() {
+		return fecha;
 	}
 	
 	@OneToMany(fetch = FetchType.EAGER)
@@ -98,6 +109,10 @@ public class UsuarioRegistrado {
 	
 	public void setArea(Area area) {
 		this.area = area;
+	}
+	
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
 	}
 	
 	public void setSoportes(Set<Soporte> soportes) {

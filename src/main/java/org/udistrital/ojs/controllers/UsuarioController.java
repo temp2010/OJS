@@ -164,10 +164,10 @@ public class UsuarioController {
 		}
 		
 		if(message.getText() != null && emailSender != null) {
-			//emailSender.send(message);
+			emailSender.send(message);
 		}
 		if(message.getText() != null && emailSender == null) {
-			//this.emailSender.send(message);
+			this.emailSender.send(message);
 		}
 	}
 

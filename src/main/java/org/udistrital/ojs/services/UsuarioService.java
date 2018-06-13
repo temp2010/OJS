@@ -21,6 +21,6 @@ public interface UsuarioService {
 	
 	public void crear(UsuarioRegistrado usuario);
 	
-	public List<List<Map<Object, Object>>> datos();
+	public List<List<Map<Object, Object>>> datos(String desde, String hasta);
 	
 }

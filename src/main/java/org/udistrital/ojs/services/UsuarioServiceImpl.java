@@ -49,8 +49,8 @@ public class UsuarioServiceImpl implements UsuarioService {
 	}
 
 	@Override
-	public List<List<Map<Object, Object>>> datos() {
-		return usuarioDao.datos();
+	public List<List<Map<Object, Object>>> datos(String desde, String hasta) {
+		return usuarioDao.datos(desde, hasta);
 	}
 
 }
